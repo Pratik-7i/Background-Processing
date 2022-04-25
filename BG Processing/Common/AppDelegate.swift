@@ -34,6 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     
     func applicationDidEnterBackground(_ application: UIApplication)
     {
+        // When the app goes into the background, we need to schedule the background task
+        
         logger.info("App did enter background")
         BGTaskScheduler.shared.cancelAllTaskRequests()
         

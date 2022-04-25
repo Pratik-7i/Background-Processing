@@ -18,6 +18,8 @@ class BGFetchManager
 
 extension BGFetchManager
 {
+    // Register your identifier with the task.
+    
     func registerAppRefreshTask()
     {
         BGTaskScheduler.shared.register(forTaskWithIdentifier: backgroundTaskIdentifierBgFetch, using: nil) { task in

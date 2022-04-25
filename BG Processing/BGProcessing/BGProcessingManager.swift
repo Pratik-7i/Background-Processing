@@ -19,6 +19,8 @@ class BGProcessingManager
 
 extension BGProcessingManager
 {
+    // Register your identifier with the task.
+
     func registerBackgroundProcessingTask()
     {
         BGTaskScheduler.shared.register(forTaskWithIdentifier: backgroundTaskIdentifierBGProcessing, using: nil) { task in

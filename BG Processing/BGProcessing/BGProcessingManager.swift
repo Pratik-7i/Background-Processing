@@ -66,7 +66,7 @@ extension BGProcessingManager
         do {
             try BGTaskScheduler.shared.submit(request)
             logger.log("Task request submitted to scheduler.")
-            message = "Background Processing scheduled" // Keep break point here & execute following line.
+            message = "Background Processing scheduled" // Keep break point here & execute following line in Terminal.
             // e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWithIdentifier:@"com.pratik.BG-Processing.BGProcessing"]
         }
         catch BGTaskScheduler.Error.notPermitted {

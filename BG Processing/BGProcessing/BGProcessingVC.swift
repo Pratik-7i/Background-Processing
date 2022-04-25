@@ -25,7 +25,7 @@ class BGProcessingVC: UIViewController
     
     func fetchData()
     {
-        if let photoCount = userDefaults.object(forKey: Key.photoCount) as? NSDictionary {
+        if let photoCount = userDefaults.object(forKey: Key.photoCount) as? Int {
             self.photoCountLabel.text = photoCount.description
         }
         

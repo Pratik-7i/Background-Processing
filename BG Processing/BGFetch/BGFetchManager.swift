@@ -57,13 +57,13 @@ extension BGFetchManager
         let request = BGAppRefreshTaskRequest(identifier: backgroundTaskIdentifierBgFetch)
         
         // Fetch no earlier than 10 seconds from now.
-        request.earliestBeginDate = Date(timeIntervalSinceNow: 10)
+        // request.earliestBeginDate = Date(timeIntervalSinceNow: 10)
         
         var message = ""
         do {
             try BGTaskScheduler.shared.submit(request)
             logger.log("Task request submitted to scheduler.")
-            message = "App Refresh scheduled" // Keep break point here & execute following line.
+            message = "App Refresh scheduled" // Keep break point here & execute following line in Terminal.
             // e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWithIdentifier:@"com.pratik.BG-Processing.BGFetch"]
         }
         catch BGTaskScheduler.Error.notPermitted {

@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
            task – and a unique identifier. Register all of the tasks
            before the end of the app launch */
         BGFetchManager.shared.registerAppRefreshTask()
-        //BGProcessingManager.shared.registerBackgroundProcessingTask()
+        BGProcessingManager.shared.registerBackgroundProcessingTask()
         
         return true
     }
@@ -40,13 +40,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         BGTaskScheduler.shared.cancelAllTaskRequests()
         
         BGFetchManager.shared.scheduleAppRefresh()
-        //BGProcessingManager.shared.scheduleBackgroundProcessing()
+        BGProcessingManager.shared.scheduleBackgroundProcessing()
     }
     
     // MARK: - Background Download Transfer
 
-    func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void)
-    {
+    func application(_ application: UIApplication,
+                     handleEventsForBackgroundURLSession identifier: String,
+                     completionHandler: @escaping () -> Void) {
         DownloadManager.shared.backgroundTransferCompletionHandler = completionHandler
     }
 }

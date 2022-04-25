@@ -94,6 +94,6 @@ extension BGDownloadVC: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let download = self.arrDownloads[indexPath.row]
         if !download.isDownloaded { return }
-        Helper.playVideo(url: download.fileURL, vc: self)
+        Helper.playVideo(name: download.fileName, vc: self)
     }
 }

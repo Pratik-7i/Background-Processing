@@ -106,10 +106,12 @@ class Helper
         }
     }
     
-    static func playVideo(url: String, vc: UIViewController)
+    static func playVideo(name: String?, vc: UIViewController)
     {
-        guard let url = URL(string: url) else { return }
-        let player = AVPlayer(url: url)
+        guard let videoName = name else { return }
+        let videoPath = Helper.cacheDirectoryPath().appendingPathComponent(VideosDirectory).appendingPathComponent(videoName)
+        let playerItem = AVPlayerItem(url: videoPath)
+        let player = AVPlayer(playerItem: playerItem)
         let playerViewController = AVPlayerViewController()
         playerViewController.player = player
         player.play()

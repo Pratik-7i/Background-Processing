@@ -28,7 +28,7 @@ class VideoListCell: UITableViewCell
     {
         self.videoTitleLabel.text = download.title
         
-        if (download.isDownloading) {
+        if download.isDownloading {
             self.downloadButton.isHidden = true
             self.deletedButton.isHidden = true
             self.downloadedView.isHidden = true

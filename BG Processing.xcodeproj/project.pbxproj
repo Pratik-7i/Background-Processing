@@ -70,6 +70,7 @@
 		9E532C6127FA0BFA00EC27A4 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F90CB0E42832479600A2A933 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F90CB0E92832676400A2A933 /* FCMHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCMHelper.swift; sourceTree = "<group>"; };
+		F90CB0EB2832794600A2A933 /* BG Processing.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BG Processing.entitlements"; sourceTree = "<group>"; };
 		F936BCAB282C38710097CEB0 /* PHAssetCollection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PHAssetCollection+Extension.swift"; sourceTree = "<group>"; };
 		F986FD2E281162B100FB8FC9 /* BGProcessingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGProcessingVC.swift; sourceTree = "<group>"; };
 		F9FB4229280605F90018BF79 /* BGProcessingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGProcessingManager.swift; sourceTree = "<group>"; };
@@ -135,6 +136,7 @@
 		9E532C2E27F9A47D00EC27A4 /* BG Processing */ = {
 			isa = PBXGroup;
 			children = (
+				F90CB0EB2832794600A2A933 /* BG Processing.entitlements */,
 				9E532C3527F9A47D00EC27A4 /* Main.storyboard */,
 				7A8D3C1927FDE15700DDEF48 /* Sound */,
 				9E532C4627F9B2FA00EC27A4 /* Common */,
@@ -455,6 +457,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "BG Processing/BG Processing.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -488,6 +491,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "BG Processing/BG Processing.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;

@@ -19,12 +19,16 @@ struct FirebaseTopic
 
 struct Key
 {
+    static let fcmServerKey = "AAAAL12Izt8:APA91bED6Rd7FSvqUsKo_tgJ9j2f6ZIILyrGfhlzFikfj7P8JirnTcJZDCCEIaHrsyqt1Rj977vX2u7bGKkV8O2LpsxWxpGIGK0FgbI4t1_itk0m8T-Ast0mAJU7AW_PRAwKfqYOdqea"
+    
     static let currencyRates = "dicRates"
     static let lastUpdatedDateRates = "lastUpdatedDateRates"
     
     static let photosCount = "photosCount"
     static let videoCount = "videoCount"
     static let lastUpdatedDatePhotoCount = "lastUpdatedDatePhotoCount"
+    
+    static let lastUpdatedDateBgNotification = "lastUpdatedDateBgNotification"
 }
 
 let arrURLs: [Dictionary] = {

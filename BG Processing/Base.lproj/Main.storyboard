@@ -125,11 +125,12 @@
                         <segue destination="02N-Hw-6Qj" kind="show" identifier="listToBGProcessing" id="Rcf-5F-EvP"/>
                         <segue destination="i14-e8-tO6" kind="show" identifier="listToBGFetch" id="Qw2-98-MwR"/>
                         <segue destination="gyz-Av-ZZM" kind="show" identifier="listToBGDownload" id="ARw-zc-2Ii"/>
+                        <segue destination="jH2-iE-Cjn" kind="show" identifier="listToBGNotification" id="aqU-h3-pDl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-117.39130434782609" y="63.616071428571423"/>
+            <point key="canvasLocation" x="-1" y="64"/>
         </scene>
         <!--FetchVC-->
         <scene sceneID="Ypb-uf-M2C">
@@ -169,20 +170,20 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CurrencyRateCell" id="GmL-z6-cB5" customClass="CurrencyRateCell" customModule="BG_Processing" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="46.5"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GmL-z6-cB5" id="nOh-lf-ef3">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="46.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="46"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Currency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bc7-r0-dBb">
-                                                    <rect key="frame" x="15" y="12" width="329" height="22.5"/>
+                                                    <rect key="frame" x="15" y="12" width="329" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ica-yZ-bH3">
-                                                    <rect key="frame" x="352" y="13" width="47" height="21"/>
+                                                    <rect key="frame" x="352" y="12.5" width="47" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" name="currencyRateLabelColor"/>
                                                     <nil key="highlightedColor"/>
@@ -261,7 +262,23 @@ Perform Background Fetch to get Data.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ftP-zP-Ugr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-842" y="917"/>
+            <point key="canvasLocation" x="-1120" y="916"/>
+        </scene>
+        <!--NotificationVC-->
+        <scene sceneID="9Rr-ah-Qda">
+            <objects>
+                <viewController id="jH2-iE-Cjn" customClass="BGNotificationVC" customModule="BG_Processing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WX0-ij-qT9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="WwC-h3-YDv"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="fm5-ok-Guh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q7e-ca-JCa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="394" y="917"/>
         </scene>
         <!--DownloadVC-->
         <scene sceneID="V7W-hI-dKQ">
@@ -405,7 +422,7 @@ Perform Background Fetch to get Data.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a30-G8-7dt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="636" y="917"/>
+            <point key="canvasLocation" x="1170" y="917"/>
         </scene>
         <!--ProcessingVC-->
         <scene sceneID="UWP-Fq-eUr">
@@ -501,7 +518,7 @@ Perform Background Fetch to get Data.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5CX-hk-8mR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-117.39130434782609" y="916.74107142857133"/>
+            <point key="canvasLocation" x="-349" y="917"/>
         </scene>
     </scenes>
     <resources>

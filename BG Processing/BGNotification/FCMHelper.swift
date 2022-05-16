@@ -44,31 +44,31 @@ class FCMHelper : NSObject
             guard settings.authorizationStatus == .authorized else { return }
             DispatchQueue.main.async {
                 UIApplication.shared.registerForRemoteNotifications()
-                self.subscibeToTopic(name: FirebaseTopic.backgroundNotification)
+                self.subscibe(to: FirebaseTopic.backgroundNotification)
             }
         }
     }
     
     // MARK: - Firebase topic subscribe and unsubscribe
     
-    func subscibeToTopic(name: String)
+    func subscibe(to topic: String)
     {
-        Messaging.messaging().subscribe(toTopic: name) { error in
+        Messaging.messaging().subscribe(toTopic: topic) { error in
             if let error = error {
-                print("Error while subscribing to topic: \(name) | Error: \(error.localizedDescription)")
+                print("Error while subscribing to topic: \(topic) | Error: \(error.localizedDescription)")
             } else {
-                print("Subscribed to topic: \(name)")
+                print("Subscribed to topic: \(topic)")
             }
         }
     }
     
-    func unsubscibeFromTopic(name: String)
+    func unsubscibe(from topic: String)
     {
-        Messaging.messaging().unsubscribe(fromTopic: name) { error in
+        Messaging.messaging().unsubscribe(fromTopic: topic) { error in
             if let error = error {
-                print("Error while unsubscribing from topic: \(name) | Error: \(error.localizedDescription)")
+                print("Error while unsubscribing from topic: \(topic) | Error: \(error.localizedDescription)")
             } else {
-                print("Unsubscribed from topic: \(name)")
+                print("Unsubscribed from topic: \(topic)")
             }
         }
     }
@@ -81,6 +81,20 @@ extension FCMHelper: MessagingDelegate
         // This callback is fired at each app startup and whenever a new token is generated.
         if let fcmToken = fcmToken {
             print("Firebase registration token: \(fcmToken)")
+        }
+    }
+}
+
+extension FCMHelper
+{
+    private func process(_ notification: UNNotification)
+    {
+        let userInfo = notification.request.content.userInfo
+        
+        if let newsTitle = userInfo["newsTitle"] as? String,
+           let newsBody = userInfo["newsBody"] as? String
+        {
+            
         }
     }
 }

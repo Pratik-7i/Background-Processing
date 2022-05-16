@@ -14,6 +14,7 @@ class TaskListVC: UIViewController
     lazy var arrTaskList : [TaskModel] = {
         return [TaskModel.init(title: "Background Fetch", description: "Launch your App in the background to execute a short refresh task.", segueId: "listToBGFetch"),
                 TaskModel.init(title: "Background Processing", description: "A time-consuming processing task that runs while the app is in the background.", segueId: "listToBGProcessing"),
+                TaskModel.init(title: "Background Notifications", description: "Deliver notifications that wake your app and allow you to perform non-UI operations in the background.", segueId: "listToBGNotification"),
                 TaskModel.init(title: "Background Downloading", description: "Downloading files in the background while your App is inactive.", segueId: "listToBGDownload")]
     }()
     

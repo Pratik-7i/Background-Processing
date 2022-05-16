@@ -15,6 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
     {
+        UIApplication.shared.applicationIconBadgeNumber = 0
+
         // Check background refresh status
         Helper.checkBackgroundRefreshStatus()
         
@@ -51,6 +53,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         Helper.registerNotifications()
         UNUserNotificationCenter.current().delegate = self
         
+        //
+        if let lastUpdatedDate = userDefaults.object(forKey: Key.lastUpdatedDateBgNotification) as? Date {
+            print("Last silent notification at: \(lastUpdatedDate.readable(format: "hh:mm"))")
+        }
+        if let value = userDefaults.object(forKey: "notificationTestKey") as? String {
+            print("Notification value: \(value)")
+        }
+        if let userInfo = userDefaults.object(forKey: "dictUserInfo") as? Dictionary {
+            print("User info: \(userInfo)")
+        }
+        //
+        
         return true
     }
     
@@ -64,6 +78,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         BGFetchManager.shared.scheduleAppRefresh()
         BGProcessingManager.shared.scheduleBackgroundProcessing()
     }
+    
+    // MARK: - Background Notification
+
+    /* Tells the app that a remote notification arrived that indicates there is data to be fetched. */
+    
+    func application(_ application: UIApplication,
+                     didReceiveRemoteNotification userInfo: [AnyHashable : Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
+    {
+        // Perform background operation
+        
+        if let value = userInfo["some-key"] as? String {
+            print(value) // output: "some-value"
+            userDefaults.set(value, forKey: "notificationTestKey")
+        }
+        
+        userDefaults.set(userInfo, forKey: "dictUserInfo")
+        userDefaults.set(Date(), forKey: Key.lastUpdatedDateBgNotification)
+        
+        // Inform the system after the background operation is completed.
+        completionHandler(.newData)
+    }
+
     
     // MARK: - Background Download Transfer
 

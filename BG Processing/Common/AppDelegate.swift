@@ -12,22 +12,44 @@ import BackgroundTasks
 class AppDelegate: UIResponder, UIApplicationDelegate
 {
     var window: UIWindow?
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
     {
         // Check background refresh status
         Helper.checkBackgroundRefreshStatus()
         
-        // Ask user for notifications permission
-        Helper.registerNotifications()
-        UNUserNotificationCenter.current().delegate = self
+        /*-------------------
+            POC Task 1 & 2
+          -------------------*/
         
-        /* (POC Task 1 & 2) For a task, provide the BGTaskScheduler object with a
+        /* For a task, provide the BGTaskScheduler object with a
            launch handler – a small block of code that runs the
            task – and a unique identifier. Register all of the tasks
            before the end of the app launch */
+        
         BGFetchManager.shared.registerAppRefreshTask()
         BGProcessingManager.shared.registerBackgroundProcessingTask()
+        
+        /*-------------------
+               POC Task 3
+          -------------------*/
+        
+        /* Configure Firebase Mesaaging for Push Notification -
+            Background Push Notification in our case. */
+        
+        FCMHelper.shared.configureFCM()
+        FCMHelper.shared.registerForRemoteNotifications()
+        
+        /*-------------------
+               POC Task 4
+          -------------------*/
+        
+        /* Ask user for notifications permission - a local notification
+            will be presented to user once all the requested downloads
+            will be completed. */
+        
+        Helper.registerNotifications()
+        UNUserNotificationCenter.current().delegate = self
         
         return true
     }
@@ -53,7 +75,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.list, .banner, .sound])
     }
 }

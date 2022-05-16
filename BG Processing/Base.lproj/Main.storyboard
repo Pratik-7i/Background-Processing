@@ -440,34 +440,63 @@ Perform Background Fetch to get Data.</string>
                                     <constraint firstItem="zee-oC-0p4" firstAttribute="leading" secondItem="PL6-rU-vXe" secondAttribute="trailing" id="u4C-59-B99"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Photos:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X13-mW-Syo">
-                                <rect key="frame" x="146" y="412" width="122.5" height="26.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <color key="textColor" name="currencyRateLabelColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TUM-my-N6o">
-                                <rect key="frame" x="184.5" y="446.5" width="45.5" height="62.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="52"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dOu-Xs-neE">
+                                <rect key="frame" x="15" y="375.5" width="384" height="199.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Photos:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X13-mW-Syo">
+                                        <rect key="frame" x="131" y="0.0" width="122.5" height="26.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" name="currencyRateLabelColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TUM-my-N6o">
+                                        <rect key="frame" x="169.5" y="29.5" width="45.5" height="62.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="52"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Videos:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pjd-Ts-da5">
+                                        <rect key="frame" x="131" y="107" width="122" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" name="currencyRateLabelColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MZk-6P-pz3">
+                                        <rect key="frame" x="169.5" y="137" width="45.5" height="62.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="52"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="Pjd-Ts-da5" firstAttribute="centerX" secondItem="TUM-my-N6o" secondAttribute="centerX" id="0Xc-eK-r9O"/>
+                                    <constraint firstItem="TUM-my-N6o" firstAttribute="top" secondItem="X13-mW-Syo" secondAttribute="bottom" constant="3" id="Cuc-IK-ybV"/>
+                                    <constraint firstItem="MZk-6P-pz3" firstAttribute="top" secondItem="Pjd-Ts-da5" secondAttribute="bottom" constant="3" id="Ixc-py-jqp"/>
+                                    <constraint firstItem="TUM-my-N6o" firstAttribute="centerX" secondItem="X13-mW-Syo" secondAttribute="centerX" id="MpI-yg-hxG"/>
+                                    <constraint firstAttribute="bottom" secondItem="MZk-6P-pz3" secondAttribute="bottom" id="eKD-Rq-VGt"/>
+                                    <constraint firstItem="Pjd-Ts-da5" firstAttribute="top" secondItem="TUM-my-N6o" secondAttribute="bottom" constant="15" id="foU-VF-R7N"/>
+                                    <constraint firstItem="X13-mW-Syo" firstAttribute="top" secondItem="dOu-Xs-neE" secondAttribute="top" id="kMi-PA-C1C"/>
+                                    <constraint firstItem="X13-mW-Syo" firstAttribute="centerX" secondItem="dOu-Xs-neE" secondAttribute="centerX" id="rp9-2h-8SU"/>
+                                    <constraint firstItem="MZk-6P-pz3" firstAttribute="centerX" secondItem="Pjd-Ts-da5" secondAttribute="centerX" id="rx3-BK-MbK"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rud-e4-agK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="X13-mW-Syo" firstAttribute="centerX" secondItem="rud-e4-agK" secondAttribute="centerX" id="2zE-mC-NYV"/>
-                            <constraint firstItem="X13-mW-Syo" firstAttribute="centerY" secondItem="rud-e4-agK" secondAttribute="centerY" constant="-50" id="4Xi-iH-0P5"/>
-                            <constraint firstItem="TUM-my-N6o" firstAttribute="centerX" secondItem="X13-mW-Syo" secondAttribute="centerX" id="FZR-D1-XJ5"/>
+                            <constraint firstItem="rud-e4-agK" firstAttribute="trailing" secondItem="dOu-Xs-neE" secondAttribute="trailing" constant="15" id="IBT-2r-kaI"/>
+                            <constraint firstItem="dOu-Xs-neE" firstAttribute="centerY" secondItem="rud-e4-agK" secondAttribute="centerY" id="Vs5-Ru-Xq1"/>
                             <constraint firstItem="Epe-T5-7m2" firstAttribute="top" secondItem="rud-e4-agK" secondAttribute="top" id="a9c-gu-H0P"/>
                             <constraint firstItem="Epe-T5-7m2" firstAttribute="centerX" secondItem="rud-e4-agK" secondAttribute="centerX" id="lcj-uB-QWJ"/>
-                            <constraint firstItem="TUM-my-N6o" firstAttribute="top" secondItem="X13-mW-Syo" secondAttribute="bottom" constant="8" id="zm9-dJ-9bX"/>
+                            <constraint firstItem="dOu-Xs-neE" firstAttribute="leading" secondItem="rud-e4-agK" secondAttribute="leading" constant="15" id="t5C-IZ-wTz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cqq-rs-xiW"/>
                     <connections>
                         <outlet property="lastUpdatedLabel" destination="zee-oC-0p4" id="kU4-7M-egZ"/>
                         <outlet property="photoCountLabel" destination="TUM-my-N6o" id="NcW-Ey-6sT"/>
+                        <outlet property="videoCountLabel" destination="MZk-6P-pz3" id="ofU-Th-nHh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5CX-hk-8mR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

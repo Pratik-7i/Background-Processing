@@ -9,7 +9,7 @@ import Foundation
 import BackgroundTasks
 import Photos
 
-private let backgroundTaskIdentifierBGProcessing = "com.pratik.BG-Processing.BGProcessing"
+private let backgroundTaskIdentifierBGProcessing = "com.pratik.backgrounds.BGProcessing"
 
 class BGProcessingManager
 {
@@ -36,7 +36,7 @@ extension BGProcessingManager
         Helper.showNotification(title: "Handle Background Processing", message: "Identifier: " + task.identifier)
 
         // Create a request that performs the main part of the background processing.
-        self.getPhotosCount()
+        self.getPhotosAndVideoCountWithSmartAlbum()
         task.setTaskCompleted(success: true)
 
         // Provide the background task with an expiration handler that cancels the request.
@@ -67,7 +67,7 @@ extension BGProcessingManager
             try BGTaskScheduler.shared.submit(request)
             logger.log("Task request submitted to scheduler.")
             message = "Background Processing scheduled" // Keep break point here & execute following line in Terminal.
-            // e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWithIdentifier:@"com.pratik.BG-Processing.BGProcessing"]
+            // e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWithIdentifier:@"com.pratik.backgrounds.BGProcessing"]
         }
         catch BGTaskScheduler.Error.notPermitted {
             message = "Background Processing - Not Permitted"
@@ -95,9 +95,28 @@ private extension BGProcessingManager
         collections.enumerateObjects { (collection, idx, stop) in
             estimatedCount += collection.estimatedAssetCount
         }
-        
+
         print("Estimated count: \(estimatedCount)")
-        userDefaults.set(estimatedCount, forKey: Key.photoCount)
+        userDefaults.set(estimatedCount, forKey: Key.photosCount)
         userDefaults.set(Date(), forKey: Key.lastUpdatedDatePhotoCount)
     }
+    
+    func getPhotosAndVideoCountWithSmartAlbum()
+    {
+        let smartCollections = PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .smartAlbumUserLibrary, options: nil)
+
+        smartCollections.enumerateObjects { collection, index, stop in
+            let assetCount = collection.estimatedAssetCount
+            if assetCount == NSNotFound {
+                let photosCount = collection.photosCount
+                let videoCount = collection.videoCount
+                print("Photos count: \(photosCount) | Video count: \(videoCount)")
+                userDefaults.set(photosCount, forKey: Key.photosCount)
+                userDefaults.set(videoCount, forKey: Key.videoCount)
+                userDefaults.set(Date(), forKey: Key.lastUpdatedDatePhotoCount)
+            }
+        }
+    }
 }
+
+

@@ -8,7 +8,7 @@
 import Foundation
 import BackgroundTasks
 
-private let backgroundTaskIdentifierBgFetch = "com.pratik.BG-Processing.BGFetch"
+private let backgroundTaskIdentifierBgFetch = "com.pratik.backgrounds.BGFetch"
 
 class BGFetchManager
 {
@@ -64,7 +64,7 @@ extension BGFetchManager
             try BGTaskScheduler.shared.submit(request)
             logger.log("Task request submitted to scheduler.")
             message = "App Refresh scheduled" // Keep break point here & execute following line in Terminal.
-            // e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWithIdentifier:@"com.pratik.BG-Processing.BGFetch"]
+            // e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWithIdentifier:@"com.pratik.backgrounds.BGFetch"]
         }
         catch BGTaskScheduler.Error.notPermitted {
             message = "App Refresh - Not Permitted"

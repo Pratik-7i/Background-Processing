@@ -10,12 +10,20 @@ import Foundation
 let serverURL = "https://open.er-api.com/v6/latest/USD"
 let VideosDirectory =  "VideosDirectory"
 
+struct FirebaseTopic
+{
+    // proximity_backgrounds_backgroundNotification
+    static let prefix = "proximity_backgrounds"
+    static let backgroundNotification = prefix + "_" + "backgroundNotification"
+}
+
 struct Key
 {
     static let currencyRates = "dicRates"
     static let lastUpdatedDateRates = "lastUpdatedDateRates"
     
-    static let photoCount = "photoCount"
+    static let photosCount = "photosCount"
+    static let videoCount = "videoCount"
     static let lastUpdatedDatePhotoCount = "lastUpdatedDatePhotoCount"
 }
 

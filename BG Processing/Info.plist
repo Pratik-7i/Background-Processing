@@ -4,8 +4,8 @@
 <dict>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
-		<string>com.pratik.BG-Processing.BGFetch</string>
-		<string>com.pratik.BG-Processing.BGProcessing</string>
+		<string>com.pratik.backgrounds.BGFetch</string>
+		<string>com.pratik.backgrounds.BGProcessing</string>
 	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
@@ -17,7 +17,5 @@
 		<string>fetch</string>
 		<string>processing</string>
 	</array>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This App get photos count for testing background processing.</string>
 </dict>
 </plist>

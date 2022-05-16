@@ -32,6 +32,10 @@
 		9E532C5E27F9FB1F00EC27A4 /* BGFetchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E532C5D27F9FB1F00EC27A4 /* BGFetchManager.swift */; };
 		9E532C6027F9FF8D00EC27A4 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E532C5F27F9FF8D00EC27A4 /* Helper.swift */; };
 		9E532C6227FA0BFA00EC27A4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E532C6127FA0BFA00EC27A4 /* Constants.swift */; };
+		F90CB0E52832479600A2A933 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F90CB0E42832479600A2A933 /* GoogleService-Info.plist */; };
+		F90CB0EA2832676400A2A933 /* FCMHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90CB0E92832676400A2A933 /* FCMHelper.swift */; };
+		F936BCAC282C38710097CEB0 /* PHAssetCollection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F936BCAB282C38710097CEB0 /* PHAssetCollection+Extension.swift */; };
+		F956F094283241BA003A7039 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = F956F093283241BA003A7039 /* FirebaseMessaging */; };
 		F986FD2F281162B100FB8FC9 /* BGProcessingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F986FD2E281162B100FB8FC9 /* BGProcessingVC.swift */; };
 		F9FB422A280605F90018BF79 /* BGProcessingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FB4229280605F90018BF79 /* BGProcessingManager.swift */; };
 /* End PBXBuildFile section */
@@ -64,6 +68,9 @@
 		9E532C5D27F9FB1F00EC27A4 /* BGFetchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGFetchManager.swift; sourceTree = "<group>"; };
 		9E532C5F27F9FF8D00EC27A4 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		9E532C6127FA0BFA00EC27A4 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		F90CB0E42832479600A2A933 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F90CB0E92832676400A2A933 /* FCMHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCMHelper.swift; sourceTree = "<group>"; };
+		F936BCAB282C38710097CEB0 /* PHAssetCollection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PHAssetCollection+Extension.swift"; sourceTree = "<group>"; };
 		F986FD2E281162B100FB8FC9 /* BGProcessingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGProcessingVC.swift; sourceTree = "<group>"; };
 		F9FB4229280605F90018BF79 /* BGProcessingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGProcessingManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F956F094283241BA003A7039 /* FirebaseMessaging in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,13 +141,14 @@
 				9E532C4727F9B32300EC27A4 /* TaskList */,
 				7A8D7EC427FC75AA00D0C383 /* BGFetch */,
 				F9FB42282806025D0018BF79 /* BGProcessing */,
+				F90CB0E82832643900A2A933 /* BGNotification */,
 				7A8D3C1027FD836D00DDEF48 /* BGDownload */,
-				9E532C5627F9CC5200EC27A4 /* Controllers */,
 				9E532C4527F9B2D200EC27A4 /* Extension */,
 				9E532C3827F9A47F00EC27A4 /* Assets.xcassets */,
 				7A1AAFE227FF351F00CCEBEC /* Colors.xcassets */,
 				9E532C3A27F9A47F00EC27A4 /* LaunchScreen.storyboard */,
 				9E532C3D27F9A47F00EC27A4 /* Info.plist */,
+				F90CB0E42832479600A2A933 /* GoogleService-Info.plist */,
 			);
 			path = "BG Processing";
 			sourceTree = "<group>";
@@ -177,12 +186,13 @@
 			path = TaskList;
 			sourceTree = "<group>";
 		};
-		9E532C5627F9CC5200EC27A4 /* Controllers */ = {
+		F90CB0E82832643900A2A933 /* BGNotification */ = {
 			isa = PBXGroup;
 			children = (
+				F90CB0E92832676400A2A933 /* FCMHelper.swift */,
 				9E532C5727F9CCAA00EC27A4 /* BGNotificationVC.swift */,
 			);
-			path = Controllers;
+			path = BGNotification;
 			sourceTree = "<group>";
 		};
 		F9FB42282806025D0018BF79 /* BGProcessing */ = {
@@ -190,6 +200,7 @@
 			children = (
 				F9FB4229280605F90018BF79 /* BGProcessingManager.swift */,
 				F986FD2E281162B100FB8FC9 /* BGProcessingVC.swift */,
+				F936BCAB282C38710097CEB0 /* PHAssetCollection+Extension.swift */,
 			);
 			path = BGProcessing;
 			sourceTree = "<group>";
@@ -210,6 +221,9 @@
 			dependencies = (
 			);
 			name = "BG Processing";
+			packageProductDependencies = (
+				F956F093283241BA003A7039 /* FirebaseMessaging */,
+			);
 			productName = "BG Processing";
 			productReference = 9E532C2C27F9A47D00EC27A4 /* BG Processing.app */;
 			productType = "com.apple.product-type.application";
@@ -238,6 +252,9 @@
 				Base,
 			);
 			mainGroup = 9E532C2327F9A47D00EC27A4;
+			packageReferences = (
+				F956F092283241BA003A7039 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 9E532C2D27F9A47D00EC27A4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -257,6 +274,7 @@
 				9E532C3927F9A47F00EC27A4 /* Assets.xcassets in Resources */,
 				9E532C3727F9A47D00EC27A4 /* Main.storyboard in Resources */,
 				7A8D3C1B27FDE16B00DDEF48 /* male_voice.aiff in Resources */,
+				F90CB0E52832479600A2A933 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,8 +290,10 @@
 				9E532C6027F9FF8D00EC27A4 /* Helper.swift in Sources */,
 				9E532C5027F9B34700EC27A4 /* Double+Extension.swift in Sources */,
 				9E532C5C27F9CD0D00EC27A4 /* BGDownloadVC.swift in Sources */,
+				F936BCAC282C38710097CEB0 /* PHAssetCollection+Extension.swift in Sources */,
 				9E532C5227F9B34700EC27A4 /* UIView+Extension.swift in Sources */,
 				F986FD2F281162B100FB8FC9 /* BGProcessingVC.swift in Sources */,
+				F90CB0EA2832676400A2A933 /* FCMHelper.swift in Sources */,
 				9E532C5E27F9FB1F00EC27A4 /* BGFetchManager.swift in Sources */,
 				7A8D3C1327FDAFB500DDEF48 /* DownloadManager.swift in Sources */,
 				9E532C6227FA0BFA00EC27A4 /* Constants.swift in Sources */,
@@ -435,13 +455,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 366E85YRM7;
+				DEVELOPMENT_TEAM = F96ZNG8E47;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "BG Processing/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Backgrounds;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This App get photos count for testing background processing.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -453,9 +474,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pratik.BG-Processing";
+				PRODUCT_BUNDLE_IDENTIFIER = com.proximity.backgrounds;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Proximity Background Operations";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -467,13 +488,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 366E85YRM7;
+				DEVELOPMENT_TEAM = F96ZNG8E47;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "BG Processing/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Backgrounds;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This App get photos count for testing background processing.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -485,9 +507,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pratik.BG-Processing";
+				PRODUCT_BUNDLE_IDENTIFIER = com.proximity.backgrounds;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Proximity Background Operations";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -516,6 +538,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F956F092283241BA003A7039 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F956F093283241BA003A7039 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F956F092283241BA003A7039 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9E532C2427F9A47D00EC27A4 /* Project object */;
 }

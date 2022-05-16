@@ -38,7 +38,9 @@ class Helper
     
     static func registerNotifications()
     {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+        let authOptions: UNAuthorizationOptions = [.alert, .sound, .badge]
+
+        UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { granted, error in
             if let error = error {
                 print("Error while requesting Notifications permission: \(error.localizedDescription)")
                 return

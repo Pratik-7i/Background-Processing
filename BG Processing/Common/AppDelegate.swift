@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
           -------------------*/
         
         /* Configure Firebase Mesaaging for Push Notification -
-            Background Push Notification in our case. */
+           Background Push Notification in our case. */
         
         FCMHelper.shared.configureFCM()
         FCMHelper.shared.registerForRemoteNotifications()
@@ -47,8 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate
           -------------------*/
         
         /* Ask user for notifications permission - a local notification
-            will be presented to user once all the requested downloads
-            will be completed. */
+           will be presented to user once all the requested downloads
+           will be completed. */
         
         Helper.registerNotifications()
         UNUserNotificationCenter.current().delegate = self

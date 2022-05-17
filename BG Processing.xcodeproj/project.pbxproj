@@ -37,6 +37,7 @@
 		F936BCAC282C38710097CEB0 /* PHAssetCollection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F936BCAB282C38710097CEB0 /* PHAssetCollection+Extension.swift */; };
 		F956F094283241BA003A7039 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = F956F093283241BA003A7039 /* FirebaseMessaging */; };
 		F986FD2F281162B100FB8FC9 /* BGProcessingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F986FD2E281162B100FB8FC9 /* BGProcessingVC.swift */; };
+		F9CF1AB428341EDB00B5E0CF /* BGNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CF1AB328341EDB00B5E0CF /* BGNotificationManager.swift */; };
 		F9FB422A280605F90018BF79 /* BGProcessingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FB4229280605F90018BF79 /* BGProcessingManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,7 @@
 		F90CB0EB2832794600A2A933 /* BG Processing.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BG Processing.entitlements"; sourceTree = "<group>"; };
 		F936BCAB282C38710097CEB0 /* PHAssetCollection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PHAssetCollection+Extension.swift"; sourceTree = "<group>"; };
 		F986FD2E281162B100FB8FC9 /* BGProcessingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGProcessingVC.swift; sourceTree = "<group>"; };
+		F9CF1AB328341EDB00B5E0CF /* BGNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGNotificationManager.swift; sourceTree = "<group>"; };
 		F9FB4229280605F90018BF79 /* BGProcessingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGProcessingManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -192,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				F90CB0E92832676400A2A933 /* FCMHelper.swift */,
+				F9CF1AB328341EDB00B5E0CF /* BGNotificationManager.swift */,
 				9E532C5727F9CCAA00EC27A4 /* BGNotificationVC.swift */,
 			);
 			path = BGNotification;
@@ -290,6 +293,7 @@
 				9E532C4427F9B04400EC27A4 /* TaskListCell.swift in Sources */,
 				9E532C3427F9A47D00EC27A4 /* TaskListVC.swift in Sources */,
 				9E532C6027F9FF8D00EC27A4 /* Helper.swift in Sources */,
+				F9CF1AB428341EDB00B5E0CF /* BGNotificationManager.swift in Sources */,
 				9E532C5027F9B34700EC27A4 /* Double+Extension.swift in Sources */,
 				9E532C5C27F9CD0D00EC27A4 /* BGDownloadVC.swift in Sources */,
 				F936BCAC282C38710097CEB0 /* PHAssetCollection+Extension.swift in Sources */,

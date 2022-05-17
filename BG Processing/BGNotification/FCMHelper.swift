@@ -84,17 +84,3 @@ extension FCMHelper: MessagingDelegate
         }
     }
 }
-
-extension FCMHelper
-{
-    private func process(_ notification: UNNotification)
-    {
-        let userInfo = notification.request.content.userInfo
-        
-        if let newsTitle = userInfo["newsTitle"] as? String,
-           let newsBody = userInfo["newsBody"] as? String
-        {
-            
-        }
-    }
-}

@@ -271,10 +271,44 @@ Perform Background Fetch to get Data.</string>
                     <view key="view" contentMode="scaleToFill" id="WX0-ij-qT9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WP9-lO-1Uq">
+                                <rect key="frame" x="143.5" y="88" width="127.5" height="45"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Updated: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DTl-8Y-0so">
+                                        <rect key="frame" x="0.0" y="12" width="112" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" systemColor="systemBlueColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C5S-9g-FKI">
+                                        <rect key="frame" x="112" y="12" width="15.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="C5S-9g-FKI" firstAttribute="leading" secondItem="DTl-8Y-0so" secondAttribute="trailing" id="GBq-sb-Zg8"/>
+                                    <constraint firstAttribute="height" constant="45" id="GOE-aG-kzV"/>
+                                    <constraint firstAttribute="trailing" secondItem="C5S-9g-FKI" secondAttribute="trailing" id="MGb-5L-iwJ"/>
+                                    <constraint firstItem="C5S-9g-FKI" firstAttribute="centerY" secondItem="WP9-lO-1Uq" secondAttribute="centerY" id="PqS-pa-4zH"/>
+                                    <constraint firstItem="DTl-8Y-0so" firstAttribute="leading" secondItem="WP9-lO-1Uq" secondAttribute="leading" id="seN-Gq-dqP"/>
+                                    <constraint firstItem="DTl-8Y-0so" firstAttribute="centerY" secondItem="WP9-lO-1Uq" secondAttribute="centerY" id="uv4-Fe-g1Y"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="WwC-h3-YDv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="WP9-lO-1Uq" firstAttribute="top" secondItem="WwC-h3-YDv" secondAttribute="top" id="I8V-Qw-Fdv"/>
+                            <constraint firstItem="WP9-lO-1Uq" firstAttribute="centerX" secondItem="WwC-h3-YDv" secondAttribute="centerX" id="piT-iW-E5H"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fm5-ok-Guh"/>
+                    <connections>
+                        <outlet property="lastUpdatedLabel" destination="C5S-9g-FKI" id="KXh-i7-Qep"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q7e-ca-JCa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

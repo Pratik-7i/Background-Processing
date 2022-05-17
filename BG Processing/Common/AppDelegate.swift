@@ -52,19 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         
         Helper.registerNotifications()
         UNUserNotificationCenter.current().delegate = self
-        
-        //
-        if let lastUpdatedDate = userDefaults.object(forKey: Key.lastUpdatedDateBgNotification) as? Date {
-            print("Last silent notification at: \(lastUpdatedDate.readable(format: "hh:mm"))")
-        }
-        if let value = userDefaults.object(forKey: "notificationTestKey") as? String {
-            print("Notification value: \(value)")
-        }
-        if let userInfo = userDefaults.object(forKey: "dictUserInfo") as? Dictionary {
-            print("User info: \(userInfo)")
-        }
-        //
-        
+       
         return true
     }
     
@@ -78,7 +66,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         BGFetchManager.shared.scheduleAppRefresh()
         BGProcessingManager.shared.scheduleBackgroundProcessing()
     }
-    
+}
+
+extension AppDelegate
+{
     // MARK: - Background Notification
 
     /* Tells the app that a remote notification arrived that indicates there is data to be fetched. */
@@ -87,21 +78,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate
                      didReceiveRemoteNotification userInfo: [AnyHashable : Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
     {
-        // Perform background operation
-        
-        if let value = userInfo["some-key"] as? String {
-            print(value) // output: "some-value"
-            userDefaults.set(value, forKey: "notificationTestKey")
-        }
-        
-        userDefaults.set(userInfo, forKey: "dictUserInfo")
-        userDefaults.set(Date(), forKey: Key.lastUpdatedDateBgNotification)
-        
-        // Inform the system after the background operation is completed.
-        completionHandler(.newData)
+        BGNotificationManager.shared.processBackgroundNotification(userInfo: userInfo, completionHandler: completionHandler)
     }
+}
 
-    
+extension AppDelegate
+{
     // MARK: - Background Download Transfer
 
     func application(_ application: UIApplication,
@@ -111,7 +93,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     }
 }
 
-extension AppDelegate: UNUserNotificationCenterDelegate {
+extension AppDelegate: UNUserNotificationCenterDelegate
+{
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {

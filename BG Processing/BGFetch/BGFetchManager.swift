@@ -35,9 +35,9 @@ extension BGFetchManager
         Helper.showNotification(title: "Handle App Refresh", message: "Identifier: " + task.identifier)
 
         // Create a request that performs the main part of the background task.
-        let request = performRequest { error in
+        let request = performRequest { success in
             // Inform the system that the background task is complete when the request completes.
-            if (error == nil) {
+            if success {
                 task.setTaskCompleted(success: true)
             } else {
                 task.setTaskCompleted(success: false)
@@ -85,28 +85,41 @@ extension BGFetchManager
 
 private extension BGFetchManager
 {
-    func performRequest(completion: @escaping (Error?) -> Void) -> URLSessionTask
+    func performRequest(completion: @escaping (Bool) -> Void) -> URLSessionTask
     {
         logger.debug("Starting background network request.")
 
-        let url = URL(string: serverURL)!
-        let task = URLSession.shared.dataTask(with: url) { data, _, error in
+        let url = URL(string: API.getTodaysMenu)!
+        
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
             logger.debug("Finished background network request.")
+            
             if let error = error {
                 logger.error("Request Error: \(error.localizedDescription, privacy: .public)")
-            } else {
-                self.storeData(data)
+                completion(false)
+                return
             }
-            completion(error)
+            guard response != nil else {
+                logger.error("No response found from the server.")
+                completion(false)
+                return
+            }
+            guard let data = data else {
+                logger.error("No data found from the server.")
+                completion(false)
+                return
+            }
+            // Store the data and mark as success
+            self.storeData(data)
+            completion(true)
         }
+        
         task.resume()
         return task
     }
     
-    func storeData(_ data: Data?)
+    func storeData(_ data: Data)
     {
-        guard let data = data else { return }
-        
         print("-----------------------------------------------------------------------------")
         do {
             guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary else { return }

@@ -59,8 +59,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/grpc/grpc-ios.git",
       "state" : {
-        "revision" : "abd2d5a4347efa0454606a788678a5d8ec223738",
-        "version" : "1.44.0-grpc"
+        "revision" : "87cbe43709371123e95ca10d6956938741388af7",
+        "version" : "1.44.1-grpc"
       }
     },
     {
@@ -70,6 +70,15 @@
       "state" : {
         "revision" : "4e9bbf2808b8fee444e84a48f5f3c12641987d3e",
         "version" : "1.7.2"
+      }
+    },
+    {
+      "identity" : "kingfisher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/Kingfisher.git",
+      "state" : {
+        "revision" : "59eb199fdb8dd47733624e8b0277822d0232579e",
+        "version" : "7.2.2"
       }
     },
     {

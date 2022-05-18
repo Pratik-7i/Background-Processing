@@ -61,16 +61,15 @@ extension BGNotificationManager
             guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary else { return }
             guard let arrDrinks = json["drinks"] as? [NSDictionary] else { return }
             do {
-                let encoded = try NSKeyedArchiver.archivedData(withRootObject: arrDrinks, requiringSecureCoding: false)
-                userDefaults.set(encoded, forKey: Key.drinks)
+                let encodedData = try NSKeyedArchiver.archivedData(withRootObject: arrDrinks, requiringSecureCoding: false)
+                userDefaults.set(encodedData, forKey: Key.drinks)
                 userDefaults.set(Date(), forKey: Key.lastUpdatedDateBgNotification)
+                userDefaults.synchronize()
             } catch let error as NSError {
-                print("Error: \(error.localizedDescription)")
+                print("Failed to store: \(error.localizedDescription)")
             }
-            userDefaults.synchronize()
-            
         } catch let error as NSError {
-            print("Failed to load: \(error.localizedDescription)")
+            print("Failed to parse: \(error.localizedDescription)")
         }
         print("-----------------------------------------------------------------------------")
     }

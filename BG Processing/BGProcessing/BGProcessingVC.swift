@@ -26,16 +26,16 @@ class BGProcessingVC: UIViewController
     
     func fetchData()
     {
+        if let lastUpdatedDate = userDefaults.object(forKey: Key.lastUpdatedDatePhotoCount) as? Date {
+            self.lastUpdatedLabel.text = lastUpdatedDate.timeAgo()
+        }
+        
         if let photosCount = userDefaults.object(forKey: Key.photosCount) as? Int {
             self.photoCountLabel.text = photosCount.description
         }
         
         if let videoCount = userDefaults.object(forKey: Key.videoCount) as? Int {
             self.videoCountLabel.text = videoCount.description
-        }
-        
-        if let lastUpdatedDate = userDefaults.object(forKey: Key.lastUpdatedDatePhotoCount) as? Date {
-            self.lastUpdatedLabel.text = lastUpdatedDate.timeAgo()
         }
     }
 }

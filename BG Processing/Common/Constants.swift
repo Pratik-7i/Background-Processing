@@ -11,8 +11,9 @@ let VideosDirectory = "VideosDirectory"
 
 struct API
 {
-    static let getExchangeRates = "https://open.er-api.com/v6/latest/USD"
-    static let getTodaysMenu = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita"
+    static let getExchangeRates   = "https://open.er-api.com/v6/latest/USD"
+    static let getWeatherForecast = "https://weatherdbi.herokuapp.com/data/weather/london"
+    static let getTodaysMenu      = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita"
 }
 
 struct FirebaseTopic

@@ -38,6 +38,11 @@
 		F956F094283241BA003A7039 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = F956F093283241BA003A7039 /* FirebaseMessaging */; };
 		F986FD2F281162B100FB8FC9 /* BGProcessingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F986FD2E281162B100FB8FC9 /* BGProcessingVC.swift */; };
 		F9CF1AB428341EDB00B5E0CF /* BGNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CF1AB328341EDB00B5E0CF /* BGNotificationManager.swift */; };
+		F9DF718C2834DFD500B0ECB3 /* DrinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DF718B2834DFD500B0ECB3 /* DrinkModel.swift */; };
+		F9DF718E2835151F00B0ECB3 /* DrinkListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DF718D2835151F00B0ECB3 /* DrinkListCell.swift */; };
+		F9DF71912835266000B0ECB3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = F9DF71902835266000B0ECB3 /* Kingfisher */; };
+		F9DF71932835277100B0ECB3 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DF71922835277100B0ECB3 /* UIImageView+Extension.swift */; };
+		F9DF71952835745300B0ECB3 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DF71942835745300B0ECB3 /* WeatherModel.swift */; };
 		F9FB422A280605F90018BF79 /* BGProcessingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FB4229280605F90018BF79 /* BGProcessingManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +80,10 @@
 		F936BCAB282C38710097CEB0 /* PHAssetCollection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PHAssetCollection+Extension.swift"; sourceTree = "<group>"; };
 		F986FD2E281162B100FB8FC9 /* BGProcessingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGProcessingVC.swift; sourceTree = "<group>"; };
 		F9CF1AB328341EDB00B5E0CF /* BGNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGNotificationManager.swift; sourceTree = "<group>"; };
+		F9DF718B2834DFD500B0ECB3 /* DrinkModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkModel.swift; sourceTree = "<group>"; };
+		F9DF718D2835151F00B0ECB3 /* DrinkListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkListCell.swift; sourceTree = "<group>"; };
+		F9DF71922835277100B0ECB3 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		F9DF71942835745300B0ECB3 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		F9FB4229280605F90018BF79 /* BGProcessingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGProcessingManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9DF71912835266000B0ECB3 /* Kingfisher in Frameworks */,
 				F956F094283241BA003A7039 /* FirebaseMessaging in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -112,6 +122,7 @@
 		7A8D7EC427FC75AA00D0C383 /* BGFetch */ = {
 			isa = PBXGroup;
 			children = (
+				F9DF71942835745300B0ECB3 /* WeatherModel.swift */,
 				7A8D7EC227FC759100D0C383 /* CurrencyRateCell.swift */,
 				9E532C5D27F9FB1F00EC27A4 /* BGFetchManager.swift */,
 				9E532C5927F9CCE200EC27A4 /* BGFetchVC.swift */,
@@ -166,6 +177,7 @@
 				9E532C4B27F9B34700EC27A4 /* UIColor+Extension.swift */,
 				9E532C4827F9B34700EC27A4 /* UITableView+Extension.swift */,
 				9E532C4C27F9B34700EC27A4 /* UIView+Extension.swift */,
+				F9DF71922835277100B0ECB3 /* UIImageView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -193,6 +205,8 @@
 		F90CB0E82832643900A2A933 /* BGNotification */ = {
 			isa = PBXGroup;
 			children = (
+				F9DF718B2834DFD500B0ECB3 /* DrinkModel.swift */,
+				F9DF718D2835151F00B0ECB3 /* DrinkListCell.swift */,
 				F90CB0E92832676400A2A933 /* FCMHelper.swift */,
 				F9CF1AB328341EDB00B5E0CF /* BGNotificationManager.swift */,
 				9E532C5727F9CCAA00EC27A4 /* BGNotificationVC.swift */,
@@ -228,6 +242,7 @@
 			name = "BG Processing";
 			packageProductDependencies = (
 				F956F093283241BA003A7039 /* FirebaseMessaging */,
+				F9DF71902835266000B0ECB3 /* Kingfisher */,
 			);
 			productName = "BG Processing";
 			productReference = 9E532C2C27F9A47D00EC27A4 /* BG Processing.app */;
@@ -259,6 +274,7 @@
 			mainGroup = 9E532C2327F9A47D00EC27A4;
 			packageReferences = (
 				F956F092283241BA003A7039 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				F9DF718F2835265F00B0ECB3 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 9E532C2D27F9A47D00EC27A4 /* Products */;
 			projectDirPath = "";
@@ -291,13 +307,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E532C4427F9B04400EC27A4 /* TaskListCell.swift in Sources */,
+				F9DF71952835745300B0ECB3 /* WeatherModel.swift in Sources */,
 				9E532C3427F9A47D00EC27A4 /* TaskListVC.swift in Sources */,
+				F9DF71932835277100B0ECB3 /* UIImageView+Extension.swift in Sources */,
 				9E532C6027F9FF8D00EC27A4 /* Helper.swift in Sources */,
 				F9CF1AB428341EDB00B5E0CF /* BGNotificationManager.swift in Sources */,
 				9E532C5027F9B34700EC27A4 /* Double+Extension.swift in Sources */,
 				9E532C5C27F9CD0D00EC27A4 /* BGDownloadVC.swift in Sources */,
 				F936BCAC282C38710097CEB0 /* PHAssetCollection+Extension.swift in Sources */,
 				9E532C5227F9B34700EC27A4 /* UIView+Extension.swift in Sources */,
+				F9DF718C2834DFD500B0ECB3 /* DrinkModel.swift in Sources */,
 				F986FD2F281162B100FB8FC9 /* BGProcessingVC.swift in Sources */,
 				F90CB0EA2832676400A2A933 /* FCMHelper.swift in Sources */,
 				9E532C5E27F9FB1F00EC27A4 /* BGFetchManager.swift in Sources */,
@@ -314,6 +333,7 @@
 				9E532C4F27F9B34700EC27A4 /* String+Extension.swift in Sources */,
 				9E532C5127F9B34700EC27A4 /* UIColor+Extension.swift in Sources */,
 				7A8D7EC327FC759100D0C383 /* CurrencyRateCell.swift in Sources */,
+				F9DF718E2835151F00B0ECB3 /* DrinkListCell.swift in Sources */,
 				7A8D3C1427FDAFB500DDEF48 /* DownloadObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -556,6 +576,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		F9DF718F2835265F00B0ECB3 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -563,6 +591,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F956F092283241BA003A7039 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
+		};
+		F9DF71902835266000B0ECB3 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F9DF718F2835265F00B0ECB3 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

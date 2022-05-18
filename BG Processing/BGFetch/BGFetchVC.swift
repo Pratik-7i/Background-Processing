@@ -28,13 +28,13 @@ class BGFetchVC: UIViewController
     
     func fetchData()
     {
+        if let lastUpdatedDate = userDefaults.object(forKey: Key.lastUpdatedDateRates) as? Date {
+            self.lastUpdatedLabel.text = lastUpdatedDate.timeAgo()
+        }
+        
         if let dicRates = userDefaults.object(forKey: Key.currencyRates) as? NSDictionary, let arrCurrency = dicRates.allKeys as? [String] {
             self.dicRates = dicRates
             self.arrCurrency = arrCurrency
-        }
-        
-        if let lastUpdatedDate = userDefaults.object(forKey: Key.lastUpdatedDateRates) as? Date {
-            self.lastUpdatedLabel.text = lastUpdatedDate.timeAgo()
         }
         
         self.ratesTableView.reloadData()

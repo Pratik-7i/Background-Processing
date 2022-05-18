@@ -10,6 +10,10 @@ import UIKit
 class BGNotificationVC: UIViewController
 {
     @IBOutlet weak var lastUpdatedLabel : UILabel!
+    @IBOutlet weak var drinksTableView  : UITableView!
+    @IBOutlet weak var noDataView       : UIView!
+    
+    var arrDrinks: [DrinkModel] = []
 
     override func viewDidLoad()
     {
@@ -20,7 +24,7 @@ class BGNotificationVC: UIViewController
     }
     
     func setupControls() {
-        self.title = "Currency Rates against 1 USD"
+        self.title = "Today's Menu"
     }
     
     func printLastBackgroundNotificationInfo()
@@ -35,17 +39,36 @@ class BGNotificationVC: UIViewController
             print("Last data updated by background notification on: \(lastUpdatedDate.readable(format: "hh:mm"))")
         }
     }
-    
+
     func fetchData()
     {
-        if let data = UserDefaults.standard.object(forKey: Key.drinks) as? Data {
-            if let array = NSKeyedUnarchiver.unarchiveObject(with: data as Data) as? [NSDictionary] {
-                print("\(array.description)")
-                print("Count: \(array.count)")
-            }
-        }
         if let lastUpdatedDate = userDefaults.object(forKey: Key.lastUpdatedDateBgNotification) as? Date {
             self.lastUpdatedLabel.text = lastUpdatedDate.timeAgo()
         }
+        
+        if let data = userDefaults.data(forKey: Key.drinks) {
+            do {
+                if let array = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [NSDictionary] {
+                    self.arrDrinks = array.map({DrinkModel.init($0)})
+                }
+            } catch let error as NSError {
+                print("Failed to retrive drinks: \(error.localizedDescription)")
+            }
+        }
+        self.drinksTableView.reloadData()
+        self.noDataView.isHidden = !(self.arrDrinks.count == 0)
+    }
+}
+
+extension BGNotificationVC: UITableViewDataSource, UITableViewDelegate
+{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.arrDrinks.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: DrinkListCell = tableView.dequeueReusableCell(withIdentifier: "DrinkListCell", for: indexPath) as! DrinkListCell
+        let drink = self.arrDrinks[indexPath.row]
+        cell.load(drink)
+        return cell
     }
 }

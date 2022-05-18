@@ -18,6 +18,13 @@ class BGFetchManager
 
 extension BGFetchManager
 {
+    func testAPI()
+    {
+        let request = performRequest { success in
+            
+        }
+    }
+    
     // Register your identifier with the task.
     
     func registerAppRefreshTask()
@@ -89,7 +96,7 @@ private extension BGFetchManager
     {
         logger.debug("Starting background network request.")
 
-        let url = URL(string: API.getTodaysMenu)!
+        let url = URL(string: API.getWeatherForecast)!
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             logger.debug("Finished background network request.")
@@ -124,6 +131,16 @@ private extension BGFetchManager
         do {
             guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary else { return }
             print(json)
+            
+            //
+            let weatherModel = WeatherModel.init(json)
+            if let currentWeather = weatherModel.currentWeather {
+                print("Summary: \(currentWeather.condition)")
+            }
+            print("Count:\(weatherModel.weatherForecasts.count)")
+            
+            //
+            
             guard let dicRates = json["rates"] as? NSDictionary else { return }
             userDefaults.set(dicRates, forKey: Key.currencyRates)
             userDefaults.set(Date(), forKey: Key.lastUpdatedDateRates)

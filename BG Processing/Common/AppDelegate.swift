@@ -53,6 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         Helper.registerNotifications()
         UNUserNotificationCenter.current().delegate = self
        
+        BGFetchManager.shared.testAPI()
+        
         return true
     }
     

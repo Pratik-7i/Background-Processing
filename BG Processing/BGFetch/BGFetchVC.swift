@@ -66,7 +66,6 @@ class BGFetchVC: UIViewController
         self.windSpeedLabel.text = currentWeather.windSpeedKM.maxFraction(0) + " km/h"
         self.rainChanceLabel.text = currentWeather.chancesOfRain
         self.humidityLabel.text = currentWeather.humidity
-
     }
     
     func handleNoData()

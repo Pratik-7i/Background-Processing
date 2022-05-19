@@ -9,12 +9,15 @@ import Foundation
 
 class WeatherModel : NSObject
 {
+    var region           : String = ""
     var currentWeather   : CurrentWeather?
     var weatherForecasts : [WeatherForecast] = []
     
     init(_ json: Any?)
     {
         guard let dic = json as? Dictionary else { return }
+
+        self.region = dic["region"] as? String ?? ""
 
         if let dicCurrentWeather = dic["currentConditions"] as? Dictionary {
             self.currentWeather = CurrentWeather.init(dicCurrentWeather)
@@ -30,8 +33,8 @@ class CurrentWeather
 {
     var time          : Date?
     var condition     : String = ""
-    var chancesOfRain : Double = 0
-    var humidity      : Double = 0
+    var chancesOfRain : String = ""
+    var humidity      : String = ""
     var iconURL       : String = ""
     var tempCelcius   : Double = 0
     var windSpeedKM   : Double = 0
@@ -42,8 +45,8 @@ class CurrentWeather
 
         self.time = Date()
         self.condition = dic["comment"] as? String ?? ""
-        self.chancesOfRain = dic["precip"] as? Double ?? 0
-        self.humidity = dic["humidity"] as? Double ?? 0
+        self.chancesOfRain = dic["precip"] as? String ?? ""
+        self.humidity = dic["humidity"] as? String ?? ""
         self.iconURL = dic["iconURL"] as? String ?? ""
         
         if let dicTemp = dic["temp"] as? Dictionary {
@@ -77,7 +80,7 @@ class WeatherForecast
         }
 
         if let dicWind = dic["max_temp"] as? Dictionary {
-            self.maxTempCelcius = dicWind["km"] as? Double ?? 0
+            self.maxTempCelcius = dicWind["c"] as? Double ?? 0
         }
     }
 }

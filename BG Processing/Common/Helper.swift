@@ -119,4 +119,26 @@ class Helper
         player.play()
         vc.present(playerViewController, animated: true)
     }
+    
+    static func getThumbnailImageFromVideoUrl(url: URL, completion: @escaping ((_ image: UIImage?)->Void))
+    {
+        DispatchQueue.global().async {
+            let asset = AVAsset(url: url)
+            let avAssetImageGenerator = AVAssetImageGenerator(asset: asset)
+            avAssetImageGenerator.appliesPreferredTrackTransform = true
+            let thumnailTime = CMTimeMake(value: 2, timescale: 1)
+            do {
+                let cgThumbImage = try avAssetImageGenerator.copyCGImage(at: thumnailTime, actualTime: nil)
+                let thumbNailImage = UIImage(cgImage: cgThumbImage)
+                DispatchQueue.main.async {
+                    completion(thumbNailImage)
+                }
+            } catch {
+                print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
+        }
+    }
 }

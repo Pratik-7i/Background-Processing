@@ -20,8 +20,7 @@ extension BGFetchManager
 {
     func testAPI()
     {
-        let request = performRequest { success in
-            
+        _ = performRequest { success in
         }
     }
     
@@ -131,21 +130,16 @@ private extension BGFetchManager
         do {
             guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary else { return }
             print(json)
-            
-            //
-            let weatherModel = WeatherModel.init(json)
-            if let currentWeather = weatherModel.currentWeather {
-                print("Summary: \(currentWeather.condition)")
+            do {
+                let encodedData = try NSKeyedArchiver.archivedData(withRootObject: json, requiringSecureCoding: false)
+                userDefaults.set(encodedData, forKey: Key.weatherInfo)
+                userDefaults.set(Date(), forKey: Key.lastUpdatedDateWeather)
+                userDefaults.synchronize()
+            } catch let error as NSError {
+                print("Failed to store: \(error.localizedDescription)")
             }
-            print("Count:\(weatherModel.weatherForecasts.count)")
-            
-            //
-            
-            guard let dicRates = json["rates"] as? NSDictionary else { return }
-            userDefaults.set(dicRates, forKey: Key.currencyRates)
-            userDefaults.set(Date(), forKey: Key.lastUpdatedDateRates)
         } catch let error as NSError {
-            print("Failed to load: \(error.localizedDescription)")
+            print("Failed to parse: \(error.localizedDescription)")
         }
         print("-----------------------------------------------------------------------------")
     }

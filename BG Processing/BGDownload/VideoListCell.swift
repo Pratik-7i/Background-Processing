@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class VideoListCell: UITableViewCell
 {
@@ -15,6 +16,7 @@ class VideoListCell: UITableViewCell
     @IBOutlet var deletedButton   : UIButton!
     @IBOutlet var downloadedView  : UIView!
     @IBOutlet var downloadedLabel : UILabel!
+    @IBOutlet var thumbImageView  : UIImageView!
 
     var downloadButtonTapped : ((UIButton)->())? = nil
     var deletedButtonTapped  : ((UIButton)->())? = nil
@@ -41,6 +43,13 @@ class VideoListCell: UITableViewCell
             self.downloadedLabel.text = download.isDownloaded ? "Downloaded" : "Download to play"
             self.progressView.isHidden = true
         }
+        
+        /*
+        if let url = URL(string: download.fileURL) {
+            Helper.getThumbnailImageFromVideoUrl(url: url) { thumbImage in
+                self.thumbImageView.image = thumbImage
+            }
+        }*/
     }
     
     @IBAction func downloadButtonTapped(_ sender: UIButton) {

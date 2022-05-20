@@ -19,7 +19,7 @@ class WeatherForecastCell: UITableViewCell
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none
-    }
+    }   
     
     func load(_ forecast: WeatherForecast) {
         self.dayLabel.text = forecast.day.maxLength(3).uppercased()

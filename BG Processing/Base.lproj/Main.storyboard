@@ -185,20 +185,20 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temp." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYQ-SS-vO9">
-                                                <rect key="frame" x="98" y="54" width="42" height="18"/>
+                                                <rect key="frame" x="98" y="51" width="42" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" systemColor="secondaryLabelColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l4j-gY-1Py">
-                                                <rect key="frame" x="98" y="72" width="44.5" height="41"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="34"/>
+                                                <rect key="frame" x="98" y="69" width="47" height="43"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="36"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="°C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CU4-Sr-YvX">
-                                                <rect key="frame" x="142.5" y="79" width="17.5" height="18"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <rect key="frame" x="145" y="76" width="16.5" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -335,7 +335,7 @@
                                             <constraint firstItem="l4j-gY-1Py" firstAttribute="leading" secondItem="aYQ-SS-vO9" secondAttribute="leading" id="Ya2-PL-EXB"/>
                                             <constraint firstItem="0yR-Vq-0vV" firstAttribute="trailing" secondItem="OTl-hZ-aCO" secondAttribute="trailing" id="YdX-N6-hfI"/>
                                             <constraint firstItem="aYQ-SS-vO9" firstAttribute="leading" secondItem="VTr-Z9-N0c" secondAttribute="trailing" constant="8" id="a8e-iJ-xDg"/>
-                                            <constraint firstItem="aYQ-SS-vO9" firstAttribute="top" secondItem="VTr-Z9-N0c" secondAttribute="top" constant="10" id="bpw-VQ-aRV"/>
+                                            <constraint firstItem="aYQ-SS-vO9" firstAttribute="top" secondItem="VTr-Z9-N0c" secondAttribute="top" constant="7" id="bpw-VQ-aRV"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fhD-y9-SKX" secondAttribute="trailing" id="dqV-SD-hwG"/>
                                             <constraint firstItem="fhD-y9-SKX" firstAttribute="leading" secondItem="DMd-va-ixA" secondAttribute="leading" constant="15" id="hFG-Lf-KEV"/>
                                             <constraint firstItem="CU4-Sr-YvX" firstAttribute="leading" secondItem="l4j-gY-1Py" secondAttribute="trailing" id="hLM-4h-R84"/>

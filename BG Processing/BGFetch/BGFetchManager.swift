@@ -18,12 +18,6 @@ class BGFetchManager
 
 extension BGFetchManager
 {
-    func testAPI()
-    {
-        _ = performRequest { success in
-        }
-    }
-    
     // Register your identifier with the task.
     
     func registerAppRefreshTask()

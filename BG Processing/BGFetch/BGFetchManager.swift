@@ -100,12 +100,12 @@ private extension BGFetchManager
                 return
             }
             guard response != nil else {
-                logger.error("No response found from the server.")
+                logger.error("No response found from the server")
                 completion(false)
                 return
             }
             guard let data = data else {
-                logger.error("No data found from the server.")
+                logger.error("No data found from the server")
                 completion(false)
                 return
             }

@@ -24,24 +24,24 @@ extension BGNotificationManager
         userDefaults.set(userInfo, forKey: Key.lastBgNotificationUserInfo)
         
         // Fetch the data from server
-        guard let url = URL(string: API.getTodaysMenu) else {
+        guard let url = URL(string: API.getDrinksMenu) else {
             completionHandler(.failed)
             return
         }
 
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
-                print("Error fetching menu from server! \(error.localizedDescription)")
+                print("Error fetching menu from server: \(error.localizedDescription)")
                 completionHandler(.failed)
                 return
             }
             guard response != nil else {
-                print("No response found fetching menu from the server")
+                print("No response found from the server")
                 completionHandler(.noData)
                 return
             }
             guard let data = data else {
-                print("No data found fetching menu from the server")
+                print("No data found from the server")
                 completionHandler(.noData)
                 return
             }

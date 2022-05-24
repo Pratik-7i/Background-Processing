@@ -126,11 +126,12 @@
                         <segue destination="i14-e8-tO6" kind="show" identifier="listToBGFetch" id="Qw2-98-MwR"/>
                         <segue destination="gyz-Av-ZZM" kind="show" identifier="listToBGDownload" id="ARw-zc-2Ii"/>
                         <segue destination="jH2-iE-Cjn" kind="show" identifier="listToBGNotification" id="aqU-h3-pDl"/>
+                        <segue destination="6Pb-NV-f1s" kind="show" identifier="listToBGExtension" id="sDh-n7-wZi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1" y="64"/>
+            <point key="canvasLocation" x="25" y="64"/>
         </scene>
         <!--FetchVC-->
         <scene sceneID="Ypb-uf-M2C">
@@ -371,9 +372,9 @@
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HYj-w6-X8o">
-                                <rect key="frame" x="82" y="389.5" width="250" height="171"/>
+                                <rect key="frame" x="82" y="397" width="250" height="156"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noDataGeneral" translatesAutoresizingMaskIntoConstraints="NO" id="rMT-1Q-b7F">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noDataWeather" translatesAutoresizingMaskIntoConstraints="NO" id="rMT-1Q-b7F">
                                         <rect key="frame" x="87.5" y="10" width="75" height="75"/>
                                         <color key="tintColor" systemColor="labelColor"/>
                                         <constraints>
@@ -382,11 +383,11 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eAM-bq-BNv">
-                                        <rect key="frame" x="0.0" y="100" width="250" height="61"/>
-                                        <string key="text">No Data Found. 
-Perform Background Fetch to get Data.</string>
+                                        <rect key="frame" x="0.0" y="85" width="250" height="61"/>
+                                        <string key="text">No Weather Data Found. 
+Perform Background Fetch to get data.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                        <color key="textColor" name="noDataLabelColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -398,7 +399,7 @@ Perform Background Fetch to get Data.</string>
                                     <constraint firstItem="rMT-1Q-b7F" firstAttribute="top" secondItem="HYj-w6-X8o" secondAttribute="top" constant="10" id="NTK-5J-963"/>
                                     <constraint firstItem="eAM-bq-BNv" firstAttribute="leading" secondItem="HYj-w6-X8o" secondAttribute="leading" id="R5c-ut-epV"/>
                                     <constraint firstAttribute="trailing" secondItem="eAM-bq-BNv" secondAttribute="trailing" id="W1u-HW-H1k"/>
-                                    <constraint firstItem="eAM-bq-BNv" firstAttribute="top" secondItem="rMT-1Q-b7F" secondAttribute="bottom" constant="15" id="ZIa-ww-VPW"/>
+                                    <constraint firstItem="eAM-bq-BNv" firstAttribute="top" secondItem="rMT-1Q-b7F" secondAttribute="bottom" id="ZIa-ww-VPW"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -432,7 +433,7 @@ Perform Background Fetch to get Data.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ftP-zP-Ugr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1120.2898550724638" y="915.40178571428567"/>
+            <point key="canvasLocation" x="-1387" y="917"/>
         </scene>
         <!--NotificationVC-->
         <scene sceneID="9Rr-ah-Qda">
@@ -561,7 +562,7 @@ Perform Background Fetch to get Data.</string>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="buh-Wk-tT0">
                                 <rect key="frame" x="82" y="362.5" width="250" height="171"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noDataGeneral" translatesAutoresizingMaskIntoConstraints="NO" id="9qz-5q-dxd">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noDataMenu" translatesAutoresizingMaskIntoConstraints="NO" id="9qz-5q-dxd">
                                         <rect key="frame" x="87.5" y="10" width="75" height="75"/>
                                         <color key="tintColor" systemColor="labelColor"/>
                                         <constraints>
@@ -571,10 +572,10 @@ Perform Background Fetch to get Data.</string>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w2G-Rp-UjK">
                                         <rect key="frame" x="0.0" y="100" width="250" height="61"/>
-                                        <string key="text">No Data Found. 
-Send Background Nitification to get Data.</string>
+                                        <string key="text">No Menu Found. 
+Send Background Notification to fetch Menu.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                        <color key="textColor" name="noDataLabelColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -612,7 +613,7 @@ Send Background Nitification to get Data.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q7e-ca-JCa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="392.75362318840581" y="916.74107142857133"/>
+            <point key="canvasLocation" x="25" y="917"/>
         </scene>
         <!--DownloadVC-->
         <scene sceneID="V7W-hI-dKQ">
@@ -761,7 +762,7 @@ Send Background Nitification to get Data.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a30-G8-7dt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1169.5652173913045" y="916.74107142857133"/>
+            <point key="canvasLocation" x="754" y="917"/>
         </scene>
         <!--ProcessingVC-->
         <scene sceneID="UWP-Fq-eUr">
@@ -857,7 +858,140 @@ Send Background Nitification to get Data.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5CX-hk-8mR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-349" y="917"/>
+            <point key="canvasLocation" x="-688" y="917"/>
+        </scene>
+        <!--ExtensionVC-->
+        <scene sceneID="aFx-4p-Lxr">
+            <objects>
+                <viewController id="6Pb-NV-f1s" customClass="BGExtensionVC" customModule="BG_Processing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XA1-Of-Vs3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jCd-go-0jL">
+                                <rect key="frame" x="143.5" y="88" width="127.5" height="45"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Updated: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u5U-P9-ooB">
+                                        <rect key="frame" x="0.0" y="12" width="112" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" systemColor="systemBlueColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lwT-bt-ziQ">
+                                        <rect key="frame" x="112" y="12" width="15.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="c5L-CE-ivE"/>
+                                    <constraint firstItem="lwT-bt-ziQ" firstAttribute="centerY" secondItem="jCd-go-0jL" secondAttribute="centerY" id="e30-tU-d70"/>
+                                    <constraint firstItem="u5U-P9-ooB" firstAttribute="centerY" secondItem="jCd-go-0jL" secondAttribute="centerY" id="fe8-u6-Jtn"/>
+                                    <constraint firstItem="lwT-bt-ziQ" firstAttribute="leading" secondItem="u5U-P9-ooB" secondAttribute="trailing" id="gYF-Ix-4Lh"/>
+                                    <constraint firstAttribute="trailing" secondItem="lwT-bt-ziQ" secondAttribute="trailing" id="hpz-gw-h2b"/>
+                                    <constraint firstItem="u5U-P9-ooB" firstAttribute="leading" secondItem="jCd-go-0jL" secondAttribute="leading" id="j8C-4C-W1J"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fqn-Ex-71G">
+                                <rect key="frame" x="0.0" y="133" width="414" height="729"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CurrencyRateCell" id="7gv-Os-Fgr" customClass="CurrencyRateCell" customModule="BG_Processing" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="46"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7gv-Os-Fgr" id="xQx-M6-eSk">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="46"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Currency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4w-Aa-m49">
+                                                    <rect key="frame" x="15" y="12" width="329" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Td3-TD-Lt6">
+                                                    <rect key="frame" x="352" y="12.5" width="47" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" name="currencyRateLabelColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="i4w-Aa-m49" firstAttribute="top" secondItem="xQx-M6-eSk" secondAttribute="top" constant="12" id="IeG-3g-hYW"/>
+                                                <constraint firstItem="Td3-TD-Lt6" firstAttribute="centerY" secondItem="xQx-M6-eSk" secondAttribute="centerY" id="Qd4-9C-GPQ"/>
+                                                <constraint firstItem="Td3-TD-Lt6" firstAttribute="leading" secondItem="i4w-Aa-m49" secondAttribute="trailing" constant="8" id="TG1-zk-V8e"/>
+                                                <constraint firstAttribute="trailing" secondItem="Td3-TD-Lt6" secondAttribute="trailing" constant="15" id="bGn-9X-OKW"/>
+                                                <constraint firstItem="i4w-Aa-m49" firstAttribute="leading" secondItem="xQx-M6-eSk" secondAttribute="leading" constant="15" id="gAs-uF-fcX"/>
+                                                <constraint firstAttribute="bottom" secondItem="i4w-Aa-m49" secondAttribute="bottom" constant="12" id="ss3-vf-EaF"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="currencyLabel" destination="i4w-Aa-m49" id="ej6-NE-SMr"/>
+                                            <outlet property="rateLabel" destination="Td3-TD-Lt6" id="yhu-RE-uiY"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="6Pb-NV-f1s" id="Qfy-KI-YsX"/>
+                                    <outlet property="delegate" destination="6Pb-NV-f1s" id="Wd0-m6-IVp"/>
+                                </connections>
+                            </tableView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vev-tY-BsM">
+                                <rect key="frame" x="82" y="379.5" width="250" height="191.5"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noDataRates" translatesAutoresizingMaskIntoConstraints="NO" id="Fg1-ZA-Gje">
+                                        <rect key="frame" x="87.5" y="10" width="75" height="75"/>
+                                        <color key="tintColor" systemColor="labelColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="75" id="4En-Ls-bRC"/>
+                                            <constraint firstAttribute="width" secondItem="Fg1-ZA-Gje" secondAttribute="height" multiplier="1:1" id="Nm0-vO-ItF"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="51m-OQ-fN8">
+                                        <rect key="frame" x="0.0" y="100" width="250" height="81.5"/>
+                                        <string key="text">No Exchange Rates Found. 
+Put app into background to perform Background Extension and fetch data.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" name="noDataLabelColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="51m-OQ-fN8" firstAttribute="top" secondItem="Fg1-ZA-Gje" secondAttribute="bottom" constant="15" id="0E4-nW-ieS"/>
+                                    <constraint firstAttribute="width" constant="250" id="IW2-Pa-MdX"/>
+                                    <constraint firstItem="51m-OQ-fN8" firstAttribute="leading" secondItem="vev-tY-BsM" secondAttribute="leading" id="Nid-s3-KdX"/>
+                                    <constraint firstItem="Fg1-ZA-Gje" firstAttribute="centerX" secondItem="vev-tY-BsM" secondAttribute="centerX" id="YNa-ge-zaU"/>
+                                    <constraint firstItem="Fg1-ZA-Gje" firstAttribute="top" secondItem="vev-tY-BsM" secondAttribute="top" constant="10" id="gXg-GY-i95"/>
+                                    <constraint firstAttribute="bottom" secondItem="51m-OQ-fN8" secondAttribute="bottom" constant="10" id="oPC-4L-ESE"/>
+                                    <constraint firstAttribute="trailing" secondItem="51m-OQ-fN8" secondAttribute="trailing" id="uqa-H8-zfu"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="7vY-gt-gfw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vev-tY-BsM" firstAttribute="centerY" secondItem="7vY-gt-gfw" secondAttribute="centerY" id="5xz-W9-F6z"/>
+                            <constraint firstItem="fqn-Ex-71G" firstAttribute="leading" secondItem="7vY-gt-gfw" secondAttribute="leading" id="K7q-uA-u4j"/>
+                            <constraint firstItem="jCd-go-0jL" firstAttribute="top" secondItem="7vY-gt-gfw" secondAttribute="top" id="MM6-y9-6hs"/>
+                            <constraint firstItem="fqn-Ex-71G" firstAttribute="top" secondItem="jCd-go-0jL" secondAttribute="bottom" id="d77-X7-yr4"/>
+                            <constraint firstItem="jCd-go-0jL" firstAttribute="centerX" secondItem="7vY-gt-gfw" secondAttribute="centerX" id="iFW-fa-WZL"/>
+                            <constraint firstItem="vev-tY-BsM" firstAttribute="centerX" secondItem="7vY-gt-gfw" secondAttribute="centerX" id="lpB-MK-qvT"/>
+                            <constraint firstItem="7vY-gt-gfw" firstAttribute="bottom" secondItem="fqn-Ex-71G" secondAttribute="bottom" id="mxY-eK-o12"/>
+                            <constraint firstItem="7vY-gt-gfw" firstAttribute="trailing" secondItem="fqn-Ex-71G" secondAttribute="trailing" id="tPd-Ne-Zfv"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="hFK-nd-nr7"/>
+                    <connections>
+                        <outlet property="lastUpdatedLabel" destination="lwT-bt-ziQ" id="dyF-Jo-9Ck"/>
+                        <outlet property="noDataView" destination="vev-tY-BsM" id="XFP-GX-et7"/>
+                        <outlet property="ratesTableView" destination="fqn-Ex-71G" id="1gm-HV-oAu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TkU-fF-chs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1481" y="917"/>
         </scene>
     </scenes>
     <resources>
@@ -867,7 +1001,9 @@ Send Background Nitification to get Data.</string>
         <image name="download" width="26" height="26"/>
         <image name="glassIcon" width="17" height="17"/>
         <image name="humidity" width="15" height="15"/>
-        <image name="noDataGeneral" width="100" height="100"/>
+        <image name="noDataMenu" width="75" height="75"/>
+        <image name="noDataRates" width="75" height="75"/>
+        <image name="noDataWeather" width="75" height="75"/>
         <image name="trashIcon" width="28" height="28"/>
         <image name="wind" width="16" height="16"/>
         <namedColor name="cardBgColor">
@@ -875,6 +1011,9 @@ Send Background Nitification to get Data.</string>
         </namedColor>
         <namedColor name="currencyRateLabelColor">
             <color red="0.39215686274509803" green="0.39215686274509803" blue="0.40784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="noDataLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="screenBgColor">
             <color red="0.95686274509803926" green="0.95686274509803926" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

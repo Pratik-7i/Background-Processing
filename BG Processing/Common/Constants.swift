@@ -11,9 +11,9 @@ let VideosDirectory = "VideosDirectory"
 
 struct API
 {
-    static let getExchangeRates   = "https://open.er-api.com/v6/latest/USD"
     static let getWeatherForecast = "https://weatherdbi.herokuapp.com/data/weather/london"
-    static let getTodaysMenu      = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita"
+    static let getDrinksMenu      = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita"
+    static let getExchangeRates   = "https://open.er-api.com/v6/latest/USD"
 }
 
 struct FirebaseTopic
@@ -27,8 +27,6 @@ struct Key
     static let fcmServerKey = "AAAAL12Izt8:APA91bED6Rd7FSvqUsKo_tgJ9j2f6ZIILyrGfhlzFikfj7P8JirnTcJZDCCEIaHrsyqt1Rj977vX2u7bGKkV8O2LpsxWxpGIGK0FgbI4t1_itk0m8T-Ast0mAJU7AW_PRAwKfqYOdqea"
     
     // Background Fetch
-    static let currencyRates = "dicRates"
-    static let lastUpdatedDateRates = "lastUpdatedDateRates"
     static let weatherInfo = "weatherInfo"
     static let lastUpdatedDateWeather = "lastUpdatedDateWeather"
 
@@ -42,6 +40,10 @@ struct Key
     static let lastArrivedDateBgNotification = "lastArrivedDateBgNotification"
     static let lastBgNotificationUserInfo    = "lastBgNotificationUserInfo"
     static let lastUpdatedDateBgNotification = "lastUpdatedDateBgNotification"
+    
+    // Background Extension
+    static let currencyRates = "dicRates"
+    static let lastUpdatedDateRates = "lastUpdatedDateRates"
 }
 
 let arrURLs: [Dictionary] = {

@@ -24,7 +24,7 @@ class BGNotificationVC: UIViewController
     }
     
     func setupControls() {
-        self.title = "Today's Menu"
+        self.title = "Drinks Menu"
     }
     
     func printLastBackgroundNotificationInfo()

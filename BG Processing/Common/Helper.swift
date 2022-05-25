@@ -15,6 +15,7 @@ let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Backgro
 
 public typealias Dictionary = [String: Any]
 let userDefaults = UserDefaults.standard
+let AppDel = UIApplication.shared.delegate as! AppDelegate
 
 class Helper
 {
@@ -140,5 +141,15 @@ class Helper
                 }
             }
         }
+    }
+    
+    static func defultsBoolForKey( _ key : String) -> Bool {
+       return UserDefaults.standard.bool(forKey: key)
+    }
+
+    static func saveDefultsBool(_ value: Bool, key: String) {
+        let defults = UserDefaults.standard
+        defults.set(value, forKey: key)
+        defults.synchronize()
     }
 }

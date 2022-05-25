@@ -53,6 +53,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         Helper.registerNotifications()
         UNUserNotificationCenter.current().delegate = self
         
+        // Dark mode
+        if #available(iOS 13.0, *) {
+            window?.overrideUserInterfaceStyle = Helper.defultsBoolForKey(Key.isDarkMode) ? .dark : .light
+        }
+        
         return true
     }
     

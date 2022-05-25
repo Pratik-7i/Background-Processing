@@ -44,6 +44,9 @@ struct Key
     // Background Extension
     static let currencyRates = "dicRates"
     static let lastUpdatedDateRates = "lastUpdatedDateRates"
+    
+    // Others
+    static let isDarkMode = "isDarkMode"
 }
 
 let arrURLs: [Dictionary] = {

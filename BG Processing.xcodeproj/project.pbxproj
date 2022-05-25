@@ -37,6 +37,10 @@
 		F936BCAC282C38710097CEB0 /* PHAssetCollection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F936BCAB282C38710097CEB0 /* PHAssetCollection+Extension.swift */; };
 		F956F094283241BA003A7039 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = F956F093283241BA003A7039 /* FirebaseMessaging */; };
 		F986FD2F281162B100FB8FC9 /* BGProcessingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F986FD2E281162B100FB8FC9 /* BGProcessingVC.swift */; };
+		F98C6385283E5B230067AB52 /* BGAudioPlaybackVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98C6384283E5B230067AB52 /* BGAudioPlaybackVC.swift */; };
+		F98C6388283E60E40067AB52 /* KungsCookin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F98C6386283E60E40067AB52 /* KungsCookin.mp3 */; };
+		F98C6389283E60E40067AB52 /* Daydreamer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F98C6387283E60E40067AB52 /* Daydreamer.mp3 */; };
+		F98C638C283ECF3D0067AB52 /* DayNightModeSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98C638B283ECF3D0067AB52 /* DayNightModeSwitcher.swift */; };
 		F991633D283CB2390051216A /* BGExtensionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F991633C283CB2390051216A /* BGExtensionVC.swift */; };
 		F9A69D6128363C9500FAF612 /* WeatherForecastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A69D6028363C9500FAF612 /* WeatherForecastCell.swift */; };
 		F9A69D6528365F0B00FAF612 /* WeatherForecastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9A69D6328365F0B00FAF612 /* WeatherForecastCell.xib */; };
@@ -82,6 +86,10 @@
 		F917360E283D63AD00BE0910 /* CurrencyRateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyRateCell.swift; sourceTree = "<group>"; };
 		F936BCAB282C38710097CEB0 /* PHAssetCollection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PHAssetCollection+Extension.swift"; sourceTree = "<group>"; };
 		F986FD2E281162B100FB8FC9 /* BGProcessingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGProcessingVC.swift; sourceTree = "<group>"; };
+		F98C6384283E5B230067AB52 /* BGAudioPlaybackVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGAudioPlaybackVC.swift; sourceTree = "<group>"; };
+		F98C6386283E60E40067AB52 /* KungsCookin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = KungsCookin.mp3; sourceTree = "<group>"; };
+		F98C6387283E60E40067AB52 /* Daydreamer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Daydreamer.mp3; sourceTree = "<group>"; };
+		F98C638B283ECF3D0067AB52 /* DayNightModeSwitcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayNightModeSwitcher.swift; sourceTree = "<group>"; };
 		F991633C283CB2390051216A /* BGExtensionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGExtensionVC.swift; sourceTree = "<group>"; };
 		F9A69D6028363C9500FAF612 /* WeatherForecastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastCell.swift; sourceTree = "<group>"; };
 		F9A69D6328365F0B00FAF612 /* WeatherForecastCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherForecastCell.xib; sourceTree = "<group>"; };
@@ -121,6 +129,8 @@
 			isa = PBXGroup;
 			children = (
 				7A8D3C1A27FDE16B00DDEF48 /* male_voice.aiff */,
+				F98C6387283E60E40067AB52 /* Daydreamer.mp3 */,
+				F98C6386283E60E40067AB52 /* KungsCookin.mp3 */,
 			);
 			path = Sound;
 			sourceTree = "<group>";
@@ -167,7 +177,9 @@
 				F90CB0E82832643900A2A933 /* BGNotification */,
 				F991633B283CB2040051216A /* BGExtension */,
 				7A8D3C1027FD836D00DDEF48 /* BGDownload */,
+				F98C6383283E5A690067AB52 /* BGAudio */,
 				9E532C4527F9B2D200EC27A4 /* Extension */,
+				F98C638A283ECF2C0067AB52 /* CustomView */,
 				9E532C3827F9A47F00EC27A4 /* Assets.xcassets */,
 				7A1AAFE227FF351F00CCEBEC /* Colors.xcassets */,
 				9E532C3D27F9A47F00EC27A4 /* Info.plist */,
@@ -220,6 +232,22 @@
 				9E532C5727F9CCAA00EC27A4 /* BGNotificationVC.swift */,
 			);
 			path = BGNotification;
+			sourceTree = "<group>";
+		};
+		F98C6383283E5A690067AB52 /* BGAudio */ = {
+			isa = PBXGroup;
+			children = (
+				F98C6384283E5B230067AB52 /* BGAudioPlaybackVC.swift */,
+			);
+			path = BGAudio;
+			sourceTree = "<group>";
+		};
+		F98C638A283ECF2C0067AB52 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				F98C638B283ECF3D0067AB52 /* DayNightModeSwitcher.swift */,
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 		F991633B283CB2040051216A /* BGExtension */ = {
@@ -308,8 +336,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A1AAFE327FF351F00CCEBEC /* Colors.xcassets in Resources */,
+				F98C6389283E60E40067AB52 /* Daydreamer.mp3 in Resources */,
 				9E532C3C27F9A47F00EC27A4 /* LaunchScreen.storyboard in Resources */,
 				F9A69D6528365F0B00FAF612 /* WeatherForecastCell.xib in Resources */,
+				F98C6388283E60E40067AB52 /* KungsCookin.mp3 in Resources */,
 				9E532C3927F9A47F00EC27A4 /* Assets.xcassets in Resources */,
 				9E532C3727F9A47D00EC27A4 /* Main.storyboard in Resources */,
 				7A8D3C1B27FDE16B00DDEF48 /* male_voice.aiff in Resources */,
@@ -337,6 +367,8 @@
 				F9DF718C2834DFD500B0ECB3 /* DrinkModel.swift in Sources */,
 				F917360F283D63AD00BE0910 /* CurrencyRateCell.swift in Sources */,
 				F986FD2F281162B100FB8FC9 /* BGProcessingVC.swift in Sources */,
+				F98C638C283ECF3D0067AB52 /* DayNightModeSwitcher.swift in Sources */,
+				F98C6385283E5B230067AB52 /* BGAudioPlaybackVC.swift in Sources */,
 				F90CB0EA2832676400A2A933 /* FCMHelper.swift in Sources */,
 				9E532C5E27F9FB1F00EC27A4 /* BGFetchManager.swift in Sources */,
 				7A8D3C1327FDAFB500DDEF48 /* DownloadManager.swift in Sources */,

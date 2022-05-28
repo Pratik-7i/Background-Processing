@@ -11,6 +11,14 @@ Apple introduced a new framework called `BackgroundTasks` for scheduling backgro
     - Data synchronization
     - Database cleanup
 
+In the demo using *BGAppRefreshTask*, weather information is fetched from the server as following screenshots:
+
+![IMG_8854](https://user-images.githubusercontent.com/96768526/170833023-afd7674f-3b58-4b44-8654-aaa6b95454f0.PNG)
+![IMG_8674](https://user-images.githubusercontent.com/96768526/170833254-a53fd80e-40c2-4814-8a01-7187c66e5c01.PNG)
+![IMG_8664](https://user-images.githubusercontent.com/96768526/170833140-fd1b71f9-718e-4ffc-b17b-63046b4d08b3.PNG)
+
+In the demo using *BGProcessingTask*, total number of photos and videos are fetched from the photo library as following screenshots:
+
 ## Purpose
 
 iOS allows app to refresh it content even when it is sent to background. iOS can intelligently study the user’s behaviour and schedule background tasks to the moment right before routine usage. It is useful for app to retrieve the latest information from its server and display to user right when app is resumed to foreground. Examples are social media app (Facebook, Instagram & WhatsApp) and news app. Following is illustration of foreground and background task:
@@ -43,7 +51,7 @@ To create this list, add the identifiers to the Info.plist file.
 
 ### # Register a task
 
-For each task, provide the *BGTaskScheduler* object with a launch handler – a small block of code that runs the task – and a unique identifier. Register all of the tasks before the end of the app launch sequence. To register background tasks, inside the *application(_:didFinishLaunchingWithOptions)* method, we should add the following command.
+For each task, provide the *BGTaskScheduler* object with a launch handler (a small block of code that runs the task) and a unique identifier. Register all of the tasks before the end of the app launch sequence. To register background tasks, inside the *application(_:didFinishLaunchingWithOptions)* method, we should add the following command.
 
 ```swift
 // For Background fetch
@@ -62,9 +70,12 @@ BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.pratik.backgrounds.B
 To submit a task request for the system to launch your app in the background at a later time, use *submit(_:)*.
 
 ```swift
+// For Background fetch
+
 func scheduleAppRefresh() {
-   let request = BGAppRefreshTaskRequest(identifier: "com.example.apple-samplecode.ColorFeed.refresh")
-   // Fetch no earlier than 15 minutes from now.
+   let request = BGAppRefreshTaskRequest(identifier: "com.pratik.backgrounds.BGFetch")
+   
+   // Fetch no earlier than 15 minutes from now
    request.earliestBeginDate = Date(timeIntervalSinceNow: 15 * 60)
         
    do {
@@ -73,4 +84,68 @@ func scheduleAppRefresh() {
       print("Could not schedule app refresh: \(error)")
    }
 }
+
+// For Background processing
+
+func scheduleBackgroundProcessing() {
+   let request = BGProcessingTaskRequest(identifier: "com.pratik.backgrounds.BGProcessing")
+   
+   // Fetch no earlier than 15 minutes from now
+   request.earliestBeginDate = Date(timeIntervalSinceNow: 15 * 60)
+        
+   // System will launch your app only when the device has a network connection
+   request.requiresNetworkConnectivity = false
+   
+   // System will launch your app only while the device is connected to external power
+   request.requiresExternalPower = false
+   
+   do {
+      try BGTaskScheduler.shared.submit(request)
+   } catch {
+      print("Could not schedule background processing: \(error)")
+   }
+}
 ```
+### # Run a task
+
+When the system opens your app in the background, it calls the launch handler to run the task.
+
+```swift
+// For Background fetch
+
+func handleAppRefresh(task: BGAppRefreshTask) {
+
+   // Schedule a new refresh task
+   self.scheduleAppRefresh()
+
+   // Provide the background task with an expiration handler that cancels the operation
+   task.expirationHandler = {
+      task.setTaskCompleted(success: false)
+   }
+
+   // Do some data fetching and inform the system
+   let isFetchSuccess = true // or false if task failed                                                                         
+   task.setTaskCompleted(success: isFetchSuccess)
+ }
+ 
+// For Background processing
+
+func handleBackgroundProcessing(task: BGProcessingTask) {
+    // Schedule a new refresh task.
+    self.scheduleBackgroundProcessing()
+    ...
+}
+```
+### # Simulate a task
+
+The delay between the time you schedule a background task and when the system launches your app to run the task can be many hours. While developing your app, you can use a private functions to start a task.
+
+To launch a task:
+
+- Pause app at any point after submitting the BGTask to BGTaskScheduler
+- Run the following command at the Terminal in Xcode
+```swift
+e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWithIdentifier:@"YOUR_TASK_IDENTIFIER"]
+```
+- Resume back your app. You can see the completion handler of the registered BGTask is then triggered.
+

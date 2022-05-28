@@ -1,4 +1,4 @@
-# Background Tasks
+# 1. Background Tasks
 
 Apple introduced a new framework called `BackgroundTasks` for scheduling background work. This new framework does better support for tasks that are needed to be done in the background. There are two types of background tasks: `BGAppRefreshTask` and `BGProcessingTask`.
 
@@ -14,10 +14,12 @@ Apple introduced a new framework called `BackgroundTasks` for scheduling backgro
 In the demo using *BGAppRefreshTask*, weather information is fetched from the server as following screenshots:
 
 ![1](https://user-images.githubusercontent.com/96768526/170833977-244433af-a54c-452a-9424-778a8ca04062.PNG)
-![2](https://user-images.githubusercontent.com/96768526/170833980-1af75d61-091e-477e-a486-ff2e309b4789.PNG)
 ![3](https://user-images.githubusercontent.com/96768526/170833981-12b5497a-6bf5-471c-9992-4fe2ac28c05e.PNG)
+![2](https://user-images.githubusercontent.com/96768526/170833980-1af75d61-091e-477e-a486-ff2e309b4789.PNG)
 
 In the demo using *BGProcessingTask*, total number of photos and videos are fetched from the photo library as following screenshots:
+
+![IMG_8863](https://user-images.githubusercontent.com/96768526/170838682-d82ff0d8-0f03-4596-b961-2e8677f8bb02.PNG)
 
 ## Purpose
 
@@ -149,3 +151,82 @@ e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWith
 ```
 - Resume back your app. You can see the completion handler of the registered BGTask is then triggered.
 
+# 2. Background Notifications
+
+If your app’s server-based content changes infrequently or at irregular intervals, you can use background notifications to notify your app when new content becomes available. A background notification is a remote notification that doesn’t display an alert, play a sound, or badge your app’s icon. It wakes your app in the background and gives it time to initiate downloads from your server and update its content. 
+
+In the demo using BGAppRefreshTask, weather information is fetched from the server as following screenshots:
+
+![IMG_8865](https://user-images.githubusercontent.com/96768526/170838703-9d34a4f9-1f1d-49d1-adfd-18508b11da90.PNG)
+![IMG_8864](https://user-images.githubusercontent.com/96768526/170838705-9ed8c34f-850a-47af-bf13-95c0ed6c1905.PNG)
+![IMG_8857](https://user-images.githubusercontent.com/96768526/170838447-1cfb19aa-80eb-430f-bede-f14dfe443e7f.PNG)
+
+## Purpose
+
+iOS allows app to refresh it content even when it is sent to background. In case of `Background Tasks`, system study the user’s behaviour and schedule background tasks. In case of `Remote Notifications`, app is awakened in the background using the push notification.
+
+In most cases, silent push notifications are used in background content update. The background operation triggered by a background push notification will have roughly 30 seconds of execution time.
+
+## Implementation
+
+### # Enable the Remote Notifications
+
+To receive background notifications, you must add the remote notifications background mode to your app. In the Signing & Capability tab, add the `Background Modes` capability, then select the Remote notification checkbox.
+
+![3525932_dark@2x 2 3](https://user-images.githubusercontent.com/96768526/170837355-b3c0f193-cf4f-4990-967d-53aa3146d7f7.png)
+
+Also, we need to add `Push Notifications` capabilities in Xcode in order for your app to be able to receive a silent push notification.
+
+### # Create a Background Notification
+
+To send a background notification, create a remote notification with an aps dictionary that includes the `content-available` key. You may include custom keys in the payload, but the aps dictionary must not contain any keys that would trigger user interactions. The notification’s POST request should contain the the `apns-priority` field with a value of 5.
+
+Sample payload for a background notification:
+
+```swift
+{
+   "aps" : {
+      "content-available" : 1
+      "apns-priority" : 5
+   },
+   "acme1" : "bar",
+   "acme2" : 42
+}
+```
+
+### # Handling Silent Push Notification
+
+```swift
+func application(_ application: UIApplication,
+                 didReceiveRemoteNotification userInfo: [AnyHashable : Any],
+                 fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
+{    
+    // Fetch the data from server
+    guard let url = URL(string: "YOUR_SERVER_ENDPOINT") else {
+        completionHandler(.failed)
+        return
+    }
+
+    let task = URLSession.shared.dataTask(with: url) { data, response, error in
+        if let error = error {
+            print("Error while fetching data from server: \(error.localizedDescription)")
+            completionHandler(.failed)
+            return
+        }
+        guard response != nil else {
+            print("No response found from the server")
+            completionHandler(.noData)
+            return
+        }
+        guard let data = data else {
+            print("No data found from the server")
+            completionHandler(.noData)
+            return
+        }
+
+        self.storeDataInDatabase(data)
+        // Inform the system after the background operation is completed.
+        completionHandler(.newData)
+    }
+}
+```

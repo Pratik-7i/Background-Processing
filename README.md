@@ -13,9 +13,9 @@ Apple introduced a new framework called `BackgroundTasks` for scheduling backgro
 
 In the demo using *BGAppRefreshTask*, weather information is fetched from the server as following screenshots:
 
-![IMG_8854](https://user-images.githubusercontent.com/96768526/170833023-afd7674f-3b58-4b44-8654-aaa6b95454f0.PNG)
-![IMG_8674](https://user-images.githubusercontent.com/96768526/170833254-a53fd80e-40c2-4814-8a01-7187c66e5c01.PNG)
-![IMG_8664](https://user-images.githubusercontent.com/96768526/170833140-fd1b71f9-718e-4ffc-b17b-63046b4d08b3.PNG)
+![1](https://user-images.githubusercontent.com/96768526/170833977-244433af-a54c-452a-9424-778a8ca04062.PNG)
+![2](https://user-images.githubusercontent.com/96768526/170833980-1af75d61-091e-477e-a486-ff2e309b4789.PNG)
+![3](https://user-images.githubusercontent.com/96768526/170833981-12b5497a-6bf5-471c-9992-4fe2ac28c05e.PNG)
 
 In the demo using *BGProcessingTask*, total number of photos and videos are fetched from the photo library as following screenshots:
 

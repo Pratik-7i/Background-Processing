@@ -41,12 +41,36 @@ To create this list, add the identifiers to the Info.plist file.
  
 ![3262151@2x](https://user-images.githubusercontent.com/96768526/170825096-ce1d28c3-dae6-4b9c-8e4c-a08b0377b44b.png)
 
-### # Enable Background Tasks
+### # Register a task
 
 For each task, provide the *BGTaskScheduler* object with a launch handler – a small block of code that runs the task – and a unique identifier. Register all of the tasks before the end of the app launch sequence. To register background tasks, inside the *application(_:didFinishLaunchingWithOptions)* method, we should add the following command.
 
 ```swift
+// For Background fetch
 BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.pratik.backgrounds.BGFetch", using: nil) { task in
     self.handleAppRefresh(task: task as! BGAppRefreshTask)
 }
- ```
+
+// For Background processing
+BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.pratik.backgrounds.BGProcessing", using: nil) { task in
+    self.handleBackgroundProcessing(task: task as! BGProcessingTask)
+}
+```
+
+### # Schedule a task
+
+To submit a task request for the system to launch your app in the background at a later time, use *submit(_:)*.
+
+```swift
+func scheduleAppRefresh() {
+   let request = BGAppRefreshTaskRequest(identifier: "com.example.apple-samplecode.ColorFeed.refresh")
+   // Fetch no earlier than 15 minutes from now.
+   request.earliestBeginDate = Date(timeIntervalSinceNow: 15 * 60)
+        
+   do {
+      try BGTaskScheduler.shared.submit(request)
+   } catch {
+      print("Could not schedule app refresh: \(error)")
+   }
+}
+```

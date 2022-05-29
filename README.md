@@ -345,3 +345,84 @@ if UIApplication.shared.applicationState == .background {
 ```
 
 > **IMPORTANT:** The value returned by `backgroundTimeRemaining` is an estimate and can change at any time. You must design your app to function correctly regardless of the value returned. It’s reasonable to use this property for debugging but we strongly recommend that you avoid using as part of your app’s logic.
+
+# 4. Background Audio Playback
+
+If you play audio from streaming data, you start a network connection, and the connection callbacks provide continuous audio data. In iOS, when you activate the `Audio background mode`, iOS will continue these callbacks even if your app is not the current active app. In short, the Audio background mode is virtually automatic. You just have to activate it and provide the infrastructure to handle it appropriately.
+
+## Purpose
+
+While playing a music, tap the Home button and the music will stop. Use `Audio background mode` when you want to keep audio to play even while user puts app into background. 
+
+### # Enable the Audio Background Mode
+
+You need to enable the capability to indicate that the app wants to plau audio while in the background mode.
+
+<img width="596" alt="Screenshot 2022-05-29 at 5 53 54 PM" src="https://user-images.githubusercontent.com/96768526/170868308-b3251ea3-490f-49af-8694-8a9b9b922f45.png">
+
+The demo for *Background Audio Playback* makes use of an `AVQueuePlayer` to queue songs and play them one after the other. 
+
+![IMG_8883](https://user-images.githubusercontent.com/96768526/170869639-b634add2-21ab-4d80-a5cb-a12e13e217eb.PNG)
+![IMG_8895](https://user-images.githubusercontent.com/96768526/170870003-bf844342-1378-4a2c-914d-5247ba01dfeb.PNG)
+
+### # Set the audio session’s category, mode and options: 
+
+```swift
+func configureAudioSesion()
+{
+    // Set the audio session’s category, mode and options.
+    do {
+        try AVAudioSession.sharedInstance().setCategory(
+            AVAudioSession.Category.playAndRecord,
+            mode: .default,
+            options: [.defaultToSpeaker, .allowBluetooth])
+    } catch {
+        print("Failed to set audio session category: \(error.localizedDescription)")
+    }
+}
+```
+
+### # Show song's metada:
+
+The controller is observing the player’s `currentItem` value to provide updates for player's current item. Set the song metadata in that observer.
+
+```swift
+override func observeValue(forKeyPath keyPath: String?, of object: Any?,
+                           change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)
+{
+    if keyPath == "currentItem",
+       let player = object as? AVPlayer,
+       let currentItem = player.currentItem?.asset as? AVURLAsset {
+        self.showSongMetada(currentItem)
+    }
+}
+```
+
+### # Observe playback time:
+
+We can request a block during playback to get changing time during normal playback, according to progress of the current time of the player.
+
+```swift
+func addPlaybackTimeObserver()
+{
+    let interval = CMTimeMake(value: 1, timescale: 100)
+    
+    self.timeObserverToken = self.player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self] progress in
+        guard let self = self else { return }
+        let timeString = Helper.stringFromTimeInterval(progress.seconds)
+
+        if UIApplication.shared.applicationState == .active {
+            // 1. Progress label
+            self.playbackTimeLabel.text = timeString
+            
+            // 2. Progress bar
+            if let currentItem = self.player.currentItem?.asset as? AVURLAsset {
+                let progress = progress.seconds/currentItem.duration.seconds
+                self.progressView.progress = Float(progress)
+            }
+        } else {
+            print("Background: \(timeString)")
+        }
+    }
+}
+```

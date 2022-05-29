@@ -11,13 +11,13 @@ Apple introduced a new framework called `BackgroundTasks` for scheduling backgro
     - Data synchronization
     - Database cleanup
 
-In the demo using *BGAppRefreshTask*, weather information is fetched from the server as following screenshots:
+In the demo using *BGAppRefreshTask*, put the app into the background and simulate a background app refresh. Later, open the app and you will see the weather information already fetched from the server as following screenshots:
 
 ![1](https://user-images.githubusercontent.com/96768526/170833977-244433af-a54c-452a-9424-778a8ca04062.PNG)
 ![3](https://user-images.githubusercontent.com/96768526/170833981-12b5497a-6bf5-471c-9992-4fe2ac28c05e.PNG)
 ![2](https://user-images.githubusercontent.com/96768526/170833980-1af75d61-091e-477e-a486-ff2e309b4789.PNG)
 
-In the demo using *BGProcessingTask*, total number of photos and videos are fetched from the photo library as following screenshots:
+In the demo using *BGProcessingTask*, put the app into the background and simulate a background processing. Later, open the app and you will see the total number of photos and videos are fetched from the photo library as following screenshots:
 
 ![IMG_8863](https://user-images.githubusercontent.com/96768526/170838682-d82ff0d8-0f03-4596-b961-2e8677f8bb02.PNG)
 
@@ -69,7 +69,7 @@ BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.pratik.backgrounds.B
 
 ### # Schedule a task
 
-To submit a task request for the system to launch your app in the background at a later time, use *submit(_:)*.
+To submit a task request for the system to launch your app in the background at a later time, use `submit(_:)`.
 
 ```swift
 // For Background fetch
@@ -155,7 +155,7 @@ e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWith
 
 If your app’s server-based content changes infrequently or at irregular intervals, you can use background notifications to notify your app when new content becomes available. A background notification is a remote notification that doesn’t display an alert, play a sound, or badge your app’s icon. It wakes your app in the background and gives it time to initiate downloads from your server and update its content. 
 
-In the demo using BGAppRefreshTask, weather information is fetched from the server as following screenshots:
+In the demo using background notifications, while app is killed (even not running in the background) - send a background notifiation. Later, open the app and you will see the updated drinks menu already fetched from the server as following screenshots:
 
 ![IMG_8865](https://user-images.githubusercontent.com/96768526/170838703-9d34a4f9-1f1d-49d1-adfd-18508b11da90.PNG)
 ![IMG_8864](https://user-images.githubusercontent.com/96768526/170838705-9ed8c34f-850a-47af-bf13-95c0ed6c1905.PNG)
@@ -189,18 +189,25 @@ Sample payload for a background notification:
       "content-available" : 1
       "apns-priority" : 5
    },
-   "acme1" : "bar",
-   "acme2" : 42
+   "userId" : 73, // custom key 1
+   "userName" : "Pratik" // custom key 2
 }
 ```
 
 ### # Handling Silent Push Notification
+
+To deliver a background notification, the system wakes your app in the background. On iOS it then calls your app delegate’s `application(_:didReceiveRemoteNotification:fetchCompletionHandler:)` method. The code snippet below demonstrates how you can extract data from the notification payload.
 
 ```swift
 func application(_ application: UIApplication,
                  didReceiveRemoteNotification userInfo: [AnyHashable : Any],
                  fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
 {    
+
+    if let value = userInfo["userName"] as? String {
+       print(value) // output: "Pratik"
+    }
+    
     // Fetch the data from server
     guard let url = URL(string: "YOUR_SERVER_ENDPOINT") else {
         completionHandler(.failed)
@@ -230,3 +237,111 @@ func application(_ application: UIApplication,
     }
 }
 ```
+Notice that you must call the completion handler in order to inform the system after the background operation is completed.
+
+# 3. Background Extension
+
+Technically, this is not a background mode, as you don’t have to declare that your app uses this mode in Capabilities. Instead, it’s an API that lets you run arbitrary code for a finite amount of time when your app is in the background. Extending your app’s background execution time ensures that you have sufficient time to perform critical tasks.
+
+When your app moves to the background, the system calls your app delegate’s `applicationDidEnterBackground(_:)` method. That method has five seconds to perform any tasks and return. Shortly after that method returns, the system puts your app into the suspended state. For most apps, five seconds is enough to perform any crucial tasks, but if you need more time, you can ask UIKit to extend your app’s runtime.
+
+In the demo using *background extension*, put the app into the background and wait intentionally for 20 seconds as task is peformed when 10 seconds are remaining. This way, we can be sure that the task is performed even after 5 seconds when app was send to background. Later, open the app and you will see the USD exchange rates already fetched from the server as following screenshots:
+
+
+![IMG_8881](https://user-images.githubusercontent.com/96768526/170867119-16f368e8-41b7-480e-b132-38208a8ad133.PNG)
+
+## Purpose
+
+Use `Background Extension` when leaving a task unfinished might cause a bad user experience in your app. For example, call this method before writing data to a file to prevent the system from suspending your app while the operation is in progress. 
+
+Normally the iOS will give upto 3 minutes to complete the task. This is just a general observation. The time can be greater than or less than 3 minutes as it is not given in the official documentation.
+
+`Background Extension` can be used for following other tasks:
+
+- Complete disk writes
+- Finish user-initiated requests
+- Network calls
+- Apply filters to images
+- Render a complicated 3D mesh
+
+## Implementation
+
+### # Register a Background Task
+
+You first need to add the following property to the place where you are performing the task. This property identifies the task request to run in the background.
+
+```swift
+var backgroundTask: UIBackgroundTaskIdentifier = .invalid
+```
+Next, lets register a task:
+
+```swift
+self.backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "Get Exchange Rates") {
+    print("--------------------------------")
+    print("System is about to kill our task")
+    print("--------------------------------")
+    // End the task if time expires.
+    self.endBackgroundTask()
+}
+assert(backgroundTask != .invalid)
+```
+
+`UIApplication.beginBackgroundTask(expirationHandler:)` tells iOS that you need more time to complete whatever it is that you’re doing in case the app moves to the background. After this call, if your app moves to the background, it will still get CPU time until you call `endBackgroundTask()`. If you provide a block object in the `expirationHandler` parameter, the system calls your handler before time expires to give you a chance to end the task. If you provide it the system will call it before the time expires to give you a chance to end a task before it had time to complete.
+
+You can call this method at any point in your app’s execution. You may also call this method multiple times to mark the beginning of several background tasks that run in parallel. However, each task must be ended separately. You identify a given task using the value returned by this method.
+
+### # End a Background Task
+
+Each call to `beginBackgroundTask API` should have a matching call to `UIApplication.endBackgroundTask(identifier:)`. Because apps cannot run indefinitely in the background, you can check how much time your app has by checking the `backgroundTimeRemaining` property of UIApplication.
+
+If you don’t call `endBackgroundTask()` after a period of time in the background, iOS will call the closure defined when you called `beginBackgroundTask(expirationHandler:)` to give you a chance to stop executing code. So it’s a very good idea to then call `endBackgroundTask()` to tell the iOS that you’re done. If you don’t do this and you continue to execute code after this block runs, iOS will terminate your app. `endBackgroundTask()` indicates to iOS that you don’t need any extra CPU time.
+
+```swift
+func endBackgroundTask()
+{
+    if self.backgroundTask != .invalid {
+        UIApplication.shared.endBackgroundTask(self.backgroundTask)
+    }
+    self.backgroundTask = .invalid
+}
+```
+
+You should call `endBackgroundTask()` at two places:
+
+- In the expiration handler
+- Once the task is completed
+
+Your overall code can be implemented as below:
+
+```swift
+func sendDataToServer(data: NSData)
+{
+    // Request the task assertion and save the ID.
+    self.backgroundTaskID = UIApplication.shared.
+               beginBackgroundTask (withName: "Finish Network Tasks") {
+       // End the task if time expires.
+       UIApplication.shared.endBackgroundTask(self.backgroundTaskID!)
+       self.backgroundTaskID = UIBackgroundTaskInvalid
+    }
+          
+    // Send the data synchronously.
+    self.sendAppDataToServer(data: data)
+          
+    // End the task assertion.
+    UIApplication.shared.endBackgroundTask(self.backgroundTaskID!)
+    self.backgroundTaskID = UIBackgroundTaskInvalid
+}
+```
+### # Get background execution remaining time
+
+For testing purpose, You can put a timer which fires every second and print remaining background execution time by following code.
+
+```swift
+let backgroundTimeLeft = UIApplication.shared.backgroundTimeRemaining
+
+if UIApplication.shared.applicationState == .background {
+    print("Background time remaining = \(backgroundTimeLeft) seconds")
+}
+```
+
+> **IMPORTANT:** The value returned by `backgroundTimeRemaining` is an estimate and can change at any time. You must design your app to function correctly regardless of the value returned. It’s reasonable to use this property for debugging but we strongly recommend that you avoid using as part of your app’s logic.

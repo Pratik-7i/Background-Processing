@@ -152,4 +152,11 @@ class Helper
         defults.set(value, forKey: key)
         defults.synchronize()
     }
+    
+    static func stringFromTimeInterval(_ interval: TimeInterval) -> String {
+        let interval = Int(interval)
+        let seconds = interval % 60
+        let minutes = (interval / 60) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
+    }
 }

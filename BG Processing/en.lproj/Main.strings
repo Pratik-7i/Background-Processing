@@ -1,0 +1,120 @@
+
+/* Class = "UILabel"; text = "0.00"; ObjectID = "4aX-Ar-n7i"; */
+"4aX-Ar-n7i.text" = "0.00";
+
+/* Class = "UILabel"; text = "No Exchange Rates Found. \nPut app into background to perform Background Extension and fetch data."; ObjectID = "51m-OQ-fN8"; */
+"51m-OQ-fN8.text" = "No Exchange Rates Found. \nPut app into background to perform Background Extension and fetch data.";
+
+/* Class = "UILabel"; text = "--"; ObjectID = "606-m7-uW6"; */
+"606-m7-uW6.text" = "--";
+
+/* Class = "UILabel"; text = "--"; ObjectID = "9SF-ov-KEN"; */
+"9SF-ov-KEN.text" = "--";
+
+/* Class = "UILabel"; text = "--"; ObjectID = "C5S-9g-FKI"; */
+"C5S-9g-FKI.text" = "--";
+
+/* Class = "UILabel"; text = "°C"; ObjectID = "CU4-Sr-YvX"; */
+"CU4-Sr-YvX.text" = "°C";
+
+/* Class = "UILabel"; text = "Last Updated: "; ObjectID = "DTl-8Y-0so"; */
+"DTl-8Y-0so.text" = "Last Updated: ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "GK5-iP-9Zq"; */
+"GK5-iP-9Zq.text" = "Label";
+
+/* Class = "UILabel"; text = "Drink"; ObjectID = "Hk4-YB-gDS"; */
+"Hk4-YB-gDS.text" = "Drink";
+
+/* Class = "UILabel"; text = "--"; ObjectID = "MZk-6P-pz3"; */
+"MZk-6P-pz3.text" = "--";
+
+/* Class = "UILabel"; text = "00:00"; ObjectID = "Mfs-fm-DWU"; */
+"Mfs-fm-DWU.text" = "00:00";
+
+/* Class = "UILabel"; text = "--"; ObjectID = "PKQ-7a-0rQ"; */
+"PKQ-7a-0rQ.text" = "--";
+
+/* Class = "UILabel"; text = "Last Updated: "; ObjectID = "PL6-rU-vXe"; */
+"PL6-rU-vXe.text" = "Last Updated: ";
+
+/* Class = "UILabel"; text = "Artist Name"; ObjectID = "Phc-Cl-x0M"; */
+"Phc-Cl-x0M.text" = "Artist Name";
+
+/* Class = "UILabel"; text = "Total Videos:"; ObjectID = "Pjd-Ts-da5"; */
+"Pjd-Ts-da5.text" = "Total Videos:";
+
+/* Class = "UILabel"; text = "--"; ObjectID = "TUM-my-N6o"; */
+"TUM-my-N6o.text" = "--";
+
+/* Class = "UILabel"; text = "00.00"; ObjectID = "Td3-TD-Lt6"; */
+"Td3-TD-Lt6.text" = "00.00";
+
+/* Class = "UILabel"; text = "--"; ObjectID = "Uxb-O3-KcQ"; */
+"Uxb-O3-KcQ.text" = "--";
+
+/* Class = "UILabel"; text = "Total Photos:"; ObjectID = "X13-mW-Syo"; */
+"X13-mW-Syo.text" = "Total Photos:";
+
+/* Class = "UILabel"; text = "Temp."; ObjectID = "aYQ-SS-vO9"; */
+"aYQ-SS-vO9.text" = "Temp.";
+
+/* Class = "UILabel"; text = "--"; ObjectID = "cIv-1v-HJn"; */
+"cIv-1v-HJn.text" = "--";
+
+/* Class = "UILabel"; text = "Rain chance"; ObjectID = "dmd-vO-NNL"; */
+"dmd-vO-NNL.text" = "Rain chance";
+
+/* Class = "UILabel"; text = "No Weather Data Found. \nPerform Background Fetch to get data."; ObjectID = "eAM-bq-BNv"; */
+"eAM-bq-BNv.text" = "No Weather Data Found. \nPerform Background Fetch to get data.";
+
+/* Class = "UILabel"; text = "Album Name"; ObjectID = "eRL-7f-smt"; */
+"eRL-7f-smt.text" = "Album Name";
+
+/* Class = "UILabel"; text = "Ahmedabad, Gujarat"; ObjectID = "fhD-y9-SKX"; */
+"fhD-y9-SKX.text" = "Ahmedabad, Gujarat";
+
+/* Class = "UILabel"; text = "Currency"; ObjectID = "i4w-Aa-m49"; */
+"i4w-Aa-m49.text" = "Currency";
+
+/* Class = "UILabel"; text = "Theme"; ObjectID = "je3-NT-UBK"; */
+"je3-NT-UBK.text" = "Theme";
+
+/* Class = "UILabel"; text = "00"; ObjectID = "l4j-gY-1Py"; */
+"l4j-gY-1Py.text" = "00";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "lXV-Pv-l0B"; */
+"lXV-Pv-l0B.text" = "Label";
+
+/* Class = "UILabel"; text = "--"; ObjectID = "lcL-eK-Rma"; */
+"lcL-eK-Rma.text" = "--";
+
+/* Class = "UILabel"; text = "--"; ObjectID = "lwT-bt-ziQ"; */
+"lwT-bt-ziQ.text" = "--";
+
+/* Class = "UILabel"; text = "Last Updated: "; ObjectID = "u5U-P9-ooB"; */
+"u5U-P9-ooB.text" = "Last Updated: ";
+
+/* Class = "UILabel"; text = "Humidity"; ObjectID = "vmX-uD-w6m"; */
+"vmX-uD-w6m.text" = "Humidity";
+
+/* Class = "UILabel"; text = "No Drinks Found. \nSend Background Notification to fetch Menu."; ObjectID = "w2G-Rp-UjK"; */
+"w2G-Rp-UjK.text" = "No Drinks Found. \nSend Background Notification to fetch Menu.";
+
+/* Class = "UILabel"; text = "Last Updated: "; ObjectID = "wGd-sS-xL6"; */
+"wGd-sS-xL6.text" = "Last Updated: ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "wwb-a4-xTl"; */
+"wwb-a4-xTl.text" = "Label";
+
+/* Class = "UILabel"; text = "Wind"; ObjectID = "xLH-qR-KMA"; */
+"xLH-qR-KMA.text" = "Wind";
+
+/* Class = "UILabel"; text = "Downloaded"; ObjectID = "yuu-Ym-VcA"; */
+"yuu-Ym-VcA.text" = "Downloaded";
+
+/* Class = "UILabel"; text = "--"; ObjectID = "zKH-rM-h98"; */
+"zKH-rM-h98.text" = "--";
+
+/* Class = "UILabel"; text = "--"; ObjectID = "zee-oC-0p4"; */
+"zee-oC-0p4.text" = "--";

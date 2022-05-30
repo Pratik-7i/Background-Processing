@@ -23,7 +23,7 @@ class DownloadManager: NSObject
     private override init()
     {
         super.init()
-        let backgroundConfiguration = URLSessionConfiguration.background(withIdentifier: "com.eris.Eris-videoUploader")
+        let backgroundConfiguration = URLSessionConfiguration.background(withIdentifier: "com.pratik.backgroundDownloads")
         self.session = URLSession(configuration: backgroundConfiguration, delegate: self, delegateQueue: nil)
     }
     

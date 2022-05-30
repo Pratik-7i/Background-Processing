@@ -10,11 +10,13 @@ import AVFoundation
 
 class BGAudioPlaybackVC: UIViewController
 {
-    @IBOutlet var albumImageView  : UIImageView!
-    @IBOutlet var songNameLabel   : UILabel!
-    @IBOutlet var artistNameLabel : UILabel!
-    @IBOutlet var timeLabel       : UILabel!
-    
+    @IBOutlet var albumImageView    : UIImageView!
+    @IBOutlet var songNameLabel     : UILabel!
+    @IBOutlet var artistNameLabel   : UILabel!
+    @IBOutlet var playbackTimeLabel : UILabel!
+    @IBOutlet var totalTimeLabel    : UILabel!
+    @IBOutlet var progressView      : UIProgressView!
+
     var timeObserverToken : Any?
 
     lazy var player: AVQueuePlayer = {
@@ -25,7 +27,7 @@ class BGAudioPlaybackVC: UIViewController
     }()
     
     private lazy var songs: [AVPlayerItem] = {
-        let songNames = ["Daydreamer", "KungsCookin"]
+        let songNames = ["Ranjha", "Daydreamer", "KungsCookin"]
         return songNames.map {
             let url = Bundle.main.url(forResource: $0, withExtension: "mp3")!
             return AVPlayerItem(url: url)
@@ -47,7 +49,7 @@ class BGAudioPlaybackVC: UIViewController
             try AVAudioSession.sharedInstance().setCategory(
                 AVAudioSession.Category.playAndRecord,
                 mode: .default,
-                options: .defaultToSpeaker)
+                options: [.defaultToSpeaker, .allowBluetooth])
         } catch {
             print("Failed to set audio session category: \(error.localizedDescription)")
         }
@@ -72,11 +74,19 @@ class BGAudioPlaybackVC: UIViewController
     {
         let interval = CMTimeMake(value: 1, timescale: 100)
         
-        self.timeObserverToken = self.player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self] progressTime in
+        self.timeObserverToken = self.player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self] progress in
             guard let self = self else { return }
-            let timeString = String(format: "%02.2f", CMTimeGetSeconds(progressTime))
+            let timeString = Helper.stringFromTimeInterval(progress.seconds)
+
             if UIApplication.shared.applicationState == .active {
-                self.timeLabel.text = timeString
+                // 1. Progress label
+                self.playbackTimeLabel.text = timeString
+                
+                // 2. Progress bar
+                if let currentItem = self.player.currentItem?.asset as? AVURLAsset {
+                    let progress = progress.seconds/currentItem.duration.seconds
+                    self.progressView.progress = Float(progress)
+                }
             } else {
                 print("Background: \(timeString)")
             }
@@ -97,15 +107,15 @@ class BGAudioPlaybackVC: UIViewController
         if keyPath == "currentItem",
            let player = object as? AVPlayer,
            let currentItem = player.currentItem?.asset as? AVURLAsset {
-            self.showSongMetada(item: currentItem)
+            self.showSongMetada(currentItem)
         }
     }
     
     // MARK: - Song Metadata
 
-    func showSongMetada(item: AVURLAsset)
+    func showSongMetada(_ playerItem: AVURLAsset)
     {
-        let metadata = item.commonMetadata
+        let metadata = playerItem.commonMetadata
         
         // 1. Album artwork
         let artworkItems = AVMetadataItem.metadataItems(from: metadata, filteredByIdentifier: .commonIdentifierArtwork)
@@ -131,6 +141,17 @@ class BGAudioPlaybackVC: UIViewController
         } else {
             self.artistNameLabel.text = "--"
         }
+        
+        // 4. Progress
+        self.progressView.progress = 0
+        
+        // 5. Playback duration
+        self.playbackTimeLabel.text = "00:00"
+        
+        // 6. Total duration
+        let duration: CMTime = playerItem.duration
+        let seconds: Float64 = CMTimeGetSeconds(duration)
+        self.totalTimeLabel.text = Helper.stringFromTimeInterval(seconds)
     }
     
     deinit {

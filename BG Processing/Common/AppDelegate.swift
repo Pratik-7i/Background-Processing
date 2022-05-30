@@ -68,8 +68,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         logger.info("App did enter background")
         BGTaskScheduler.shared.cancelAllTaskRequests()
         
-        //BGFetchManager.shared.scheduleAppRefresh()
-        //BGProcessingManager.shared.scheduleBackgroundProcessing()
+        BGFetchManager.shared.scheduleAppRefresh()
+        BGProcessingManager.shared.scheduleBackgroundProcessing()
     }
 }
 

@@ -1,4 +1,27 @@
-# 1. Background Tasks
+Developers and users are often confused as to what the iOS multitasking system allows. Apple has restrictions in place for the use of background operations in an effort to improve user experience and extend battery life. Your app is only allowed to keep running in the background in very specific cases. For example, these include fetching the latest content from a server, getting location updates, downloading videos or playing audio.
+
+![IMG_8930](https://user-images.githubusercontent.com/96768526/171053629-8c6d1df4-0be6-46c9-9063-bdea0f33655f.PNG)
+![3](https://user-images.githubusercontent.com/96768526/171052155-1cb891be-8f28-41a2-b293-5532ef64d89f.PNG)
+![IMG_8929](https://user-images.githubusercontent.com/96768526/171053551-38f3890d-e543-44da-966d-81f9c36daa91.PNG)
+![IMG_8928](https://user-images.githubusercontent.com/96768526/171053473-4447b386-d718-4bcc-8291-c67287605c93.PNG)
+![IMG_8927](https://user-images.githubusercontent.com/96768526/171053309-bce8913d-f320-45d3-8faf-17c0d414e29f.PNG)
+![IMG_8897](https://user-images.githubusercontent.com/96768526/171052178-0b5caa09-f85b-4f5c-98e0-1cff7654c3fc.PNG)
+![IMG_8917](https://user-images.githubusercontent.com/96768526/171052173-4d5a29f9-e29e-4c39-a85b-a8679dc3ea43.PNG)
+![IMG_8922](https://user-images.githubusercontent.com/96768526/171053810-84cc5c3c-7b69-4c50-bf03-fad1a15c267f.PNG)
+
+This project demonstrate an app that uses the following background modes:
+
+[1. Background Tasks](#1---background-tasks)
+
+[2. Background Notifications](#2---background-notifications)
+
+[3. Background Extension](#3---background-extension)
+
+[4. Background Downloading](#4---background-downloading)
+
+[5. Background Audio Playback](#5---background-audio-playback)
+
+# 1 - Background Tasks
 
 Apple introduced a new framework called `BackgroundTasks` for scheduling background work. This new framework does better support for tasks that are needed to be done in the background. There are two types of background tasks: `BGAppRefreshTask` and `BGProcessingTask`.
 
@@ -151,7 +174,7 @@ e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWith
 ```
 - Resume back your app. You can see the completion handler of the registered BGTask is then triggered.
 
-# 2. Background Notifications
+# 2 - Background Notifications
 
 If your app’s server-based content changes infrequently or at irregular intervals, you can use background notifications to notify your app when new content becomes available. A background notification is a remote notification that doesn’t display an alert, play a sound, or badge your app’s icon. It wakes your app in the background and gives it time to initiate downloads from your server and update its content. 
 
@@ -239,7 +262,7 @@ func application(_ application: UIApplication,
 ```
 Notice that you must call the completion handler in order to inform the system after the background operation is completed.
 
-# 3. Background Extension
+# 3 - Background Extension
 
 Technically, this is not a background mode, as you don’t have to declare that your app uses this mode in Capabilities. Instead, it’s an API that lets you run arbitrary code for a finite amount of time when your app is in the background. Extending your app’s background execution time ensures that you have sufficient time to perform critical tasks.
 
@@ -247,7 +270,7 @@ When your app moves to the background, the system calls your app delegate’s `a
 
 In the demo using *background extension*, put the app into the background and wait intentionally for 20 seconds as task is peformed when 10 seconds are remaining. This way, we can be sure that the task is performed even after 5 seconds when app was send to background. Later, open the app and you will see the USD exchange rates already fetched from the server as following screenshots:
 
-
+![IMG_8926](https://user-images.githubusercontent.com/96768526/171053020-a622675b-cfde-4d13-b9a4-63d4eba141e2.PNG)
 ![IMG_8881](https://user-images.githubusercontent.com/96768526/170867119-16f368e8-41b7-480e-b132-38208a8ad133.PNG)
 
 ## Purpose
@@ -346,13 +369,97 @@ if UIApplication.shared.applicationState == .background {
 
 > **IMPORTANT:** The value returned by `backgroundTimeRemaining` is an estimate and can change at any time. You must design your app to function correctly regardless of the value returned. It’s reasonable to use this property for debugging but we strongly recommend that you avoid using as part of your app’s logic.
 
-# 4. Background Audio Playback
+# 4 - Background Downloading
+
+We can to use `URLSessionDownloadTask` to download files in the background so that they can completed even if the app is terminated. The actual download process will run outside of the app process by the system so it can continue when the app is terminated. This works exactly the same for uploads with `URLSessionUploadTask`.
+
+The demo shows how to implement background downloading with progress monitoring for multiple downloads running in parallel. Once all the downloads are completed, it will notify a user with a local notification, so the user can know that all the requested video downloading is finished.
+
+![IMG_8908](https://user-images.githubusercontent.com/96768526/171048603-43fa8514-37b9-41fb-beff-c48c4538d6db.PNG)
+![IMG_8914](https://user-images.githubusercontent.com/96768526/171048607-ffcafce4-1d23-4a77-9388-014ff2d33ade.PNG)
+![IMG_8917](https://user-images.githubusercontent.com/96768526/171048611-368b26c8-e79d-4a69-bf61-f13dd057b0b6.PNG)
+![IMG_8921](https://user-images.githubusercontent.com/96768526/171048616-329b1947-cf3e-42fa-a249-06c4357a3dc0.PNG)
+![IMG_8922](https://user-images.githubusercontent.com/96768526/171048619-47cf3a0f-61be-4288-958b-3a24bf6554b4.PNG)
+
+## Purpose
+
+Once the app is put into background state, the app is no longer connected to the internet and downlading does not continue. For example, the download does not continue while we put the device aside and it goes to sleep. What we need is the download should continue when user put app into background, keep device aside and display goes to sleep mode or while using another app.
+
+## Implementation
+
+### # Configure the Background Session
+
+In order to create a session for initiating download or upload tasks either on the background or the foreground, we need to use `URLSessionConfiguration` class. Create a background `URLSessionConfiguration` object with the class method `background(withIdentifier:)` of `URLSession`, providing a session identifier that is unique within your app. 
+
+The next step that must be performed, is to instantiate the `URLSession` instance using this `URLSessionConfiguration` instance. Provide a delegate, to receive events from the background transfer.
+
+```swift
+private lazy var session: URLSession = {
+    let configuration = URLSessionConfiguration.background(withIdentifier: "com.pratik.backgroundDownloads")
+    configuration.sessionSendsLaunchEvents = true
+    return URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+}()
+```
+
+### # Create a Download Task
+
+You create download tasks from the session with either the `downloadTask(with:)` method that takes a `URL`, or the `downloadTask(with:)` method that takes a `URLRequest` instance.
+
+```swift
+let downloadTask = session.downloadTask(with: url)
+backgroundTask.resume()
+```
+
+### # Handling Downloads on the Background
+
+Every time that the background thread of the system that is responsible for a file download of our app has messages for it, it calls the `application:handleEventsForBackgroundURLSession:completionHandler:` application delegate method. By doing so, the session identifier that woke the app up, along with a completion handler are passed to the app. The completion handler of the parameter must be stored locally, and called when all downloads are finished so the system knows that no more background activity is required (all transfers are complete) and any reserved resources to be freed up. Of course, upon each download finish, the `URLSession:downloadTask:didFinishDownloadingToURL:` delegate method is called to do all the finishing actions, such as copying the downloaded file from the temporary location to the Documents directory.
+
+```swift
+var backgroundTransferCompletionHandler: () -> ()? = nil
+```
+
+```swift
+func application(_ application: UIApplication,
+                 handleEventsForBackgroundURLSession identifier: String,
+                 completionHandler: @escaping () -> Void) {
+    self.backgroundTransferCompletionHandler = completionHandler
+}
+```
+
+Other than the above method, when the system has no more messages to send to our app after a background transfer, the  `urlSessionDidFinishEvents(forBackgroundURLSession:)` method of `URLSessionDelegate` method is called. In that method we will make the call to the completion handler, and we will show the local notification.
+
+In the implementation, we first make sure that all downloads are over. Once that’s true, we store locally the completion handler and make nil the backgroundTransferCompletionHandler property. The call to the local copy of completion handler must always take place in the main thread.
+
+```swift
+func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession)
+{
+    session.getTasksWithCompletionHandler { (dataTasks, uploadTasks, downloadTasks) in
+        
+        // Check if all download tasks have been finished.
+        if downloadTasks.count == 0 {
+            // Copy locally the completion handler.
+            if let completionHandler = self.backgroundTransferCompletionHandler {
+                OperationQueue.main.addOperation({
+                    // Call the completion handler to tell the system that there are no other background transfers.
+                    completionHandler()
+                    // Show a local notification when all downloads are over.
+                })
+                // Make nil the backgroundTransferCompletionHandler.
+                self.backgroundTransferCompletionHandler = nil;
+            }
+        }
+    }
+}
+```
+# 5 - Background Audio Playback
 
 If you play audio from streaming data, you start a network connection, and the connection callbacks provide continuous audio data. In iOS, when you activate the `Audio background mode`, iOS will continue these callbacks even if your app is not the current active app. In short, the Audio background mode is virtually automatic. You just have to activate it and provide the infrastructure to handle it appropriately.
 
 ## Purpose
 
 While playing a music, tap the Home button and the music will stop. Use `Audio background mode` when you want to keep audio to play even while user puts app into background. 
+
+## Implementation
 
 ### # Enable the Audio Background Mode
 
@@ -426,3 +533,4 @@ func addPlaybackTimeObserver()
     }
 }
 ```
+

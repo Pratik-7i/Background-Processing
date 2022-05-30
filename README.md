@@ -181,7 +181,6 @@ If your app’s server-based content changes infrequently or at irregular interv
 In the demo using background notifications, while app is killed (even not running in the background) - send a background notifiation. Later, open the app and you will see the updated drinks menu already fetched from the server as following screenshots:
 
 ![IMG_8865](https://user-images.githubusercontent.com/96768526/170838703-9d34a4f9-1f1d-49d1-adfd-18508b11da90.PNG)
-![IMG_8864](https://user-images.githubusercontent.com/96768526/170838705-9ed8c34f-850a-47af-bf13-95c0ed6c1905.PNG)
 ![IMG_8857](https://user-images.githubusercontent.com/96768526/170838447-1cfb19aa-80eb-430f-bede-f14dfe443e7f.PNG)
 
 ## Purpose
@@ -378,8 +377,8 @@ The demo shows how to implement background downloading with progress monitoring 
 ![IMG_8908](https://user-images.githubusercontent.com/96768526/171048603-43fa8514-37b9-41fb-beff-c48c4538d6db.PNG)
 ![IMG_8914](https://user-images.githubusercontent.com/96768526/171048607-ffcafce4-1d23-4a77-9388-014ff2d33ade.PNG)
 ![IMG_8917](https://user-images.githubusercontent.com/96768526/171048611-368b26c8-e79d-4a69-bf61-f13dd057b0b6.PNG)
-![IMG_8921](https://user-images.githubusercontent.com/96768526/171048616-329b1947-cf3e-42fa-a249-06c4357a3dc0.PNG)
 ![IMG_8922](https://user-images.githubusercontent.com/96768526/171048619-47cf3a0f-61be-4288-958b-3a24bf6554b4.PNG)
+![IMG_8921](https://user-images.githubusercontent.com/96768526/171048616-329b1947-cf3e-42fa-a249-06c4357a3dc0.PNG)
 
 ## Purpose
 

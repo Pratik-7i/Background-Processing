@@ -504,6 +504,49 @@ override func observeValue(forKeyPath keyPath: String?, of object: Any?,
 }
 ```
 
+```swift
+func showSongMetada(_ playerItem: AVURLAsset)
+{
+    let metadata = playerItem.commonMetadata
+    
+    // 1. Album artwork
+    let artworkItems = AVMetadataItem.metadataItems(from: metadata, filteredByIdentifier: .commonIdentifierArtwork)
+    if let artworkItem = artworkItems.first, let imageData = artworkItem.dataValue {
+        let image = UIImage(data: imageData)
+        self.albumImageView.image = image
+    } else {
+        self.albumImageView.image = UIImage(named: "albumPlaceholder")
+    }
+    
+    // 2. Song name
+    let albumItems = AVMetadataItem.metadataItems(from: metadata, filteredByIdentifier: .commonIdentifierTitle)
+    if let albumItem = albumItems.first, let albumName = albumItem.value as? String {
+        self.songNameLabel.text = albumName
+    } else {
+        self.songNameLabel.text = "--"
+    }
+    
+    // 3. Artist Name
+    let artistItems = AVMetadataItem.metadataItems(from: metadata, filteredByIdentifier: .commonIdentifierArtist)
+    if let artistItem = artistItems.first, let artistName = artistItem.value as? String {
+        self.artistNameLabel.text = artistName
+    } else {
+        self.artistNameLabel.text = "--"
+    }
+    
+    // 4. Progress
+    self.progressView.progress = 0
+    
+    // 5. Playback duration
+    self.playbackTimeLabel.text = "00:00"
+    
+    // 6. Total duration
+    let duration: CMTime = playerItem.duration
+    let seconds: Float64 = CMTimeGetSeconds(duration)
+    self.totalTimeLabel.text = Helper.stringFromTimeInterval(seconds)
+}
+```
+
 ### # Observe playback time:
 
 We can request a block during playback to get changing time during normal playback, according to progress of the current time of the player.

@@ -76,7 +76,7 @@ To create this list, add the identifiers to the Info.plist file.
 
 ### # Register a task
 
-For each task, provide the *BGTaskScheduler* object with a launch handler (a small block of code that runs the task) and a unique identifier. Register all of the tasks before the end of the app launch sequence. To register background tasks, inside the *application(_:didFinishLaunchingWithOptions)* method, we should add the following command.
+For each task, provide the *BGTaskScheduler* object with a launch handler (a small block of code that runs the task) and a unique identifier. Register all of the tasks before the end of the app launch sequence. To register background tasks, inside the `application(_:didFinishLaunchingWithOptions)` method, we should add the following command.
 
 ```swift
 // For Background fetch

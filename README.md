@@ -65,6 +65,8 @@ To add the capabilities:
 
 ![3262152@2x](https://user-images.githubusercontent.com/96768526/170824969-cb6808c1-bf00-4025-a0f4-6cf6e72e7699.png)
 
+### # Register the identifiers for the tasks
+
 To create this list, add the identifiers to the Info.plist file.
 
 - Open the project navigator and select your target.

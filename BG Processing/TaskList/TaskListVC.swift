@@ -44,6 +44,8 @@ class TaskListVC: UIViewController
             self.switchTheme.fallingStarDelay = 3
             self.switchTheme.delegate = self
             self.viewSwitch.addSubview(self.switchTheme)
+            // temp
+            self.stackViewDarkMode.isHidden = true
         }
         else {
             self.stackViewDarkMode.isHidden = true

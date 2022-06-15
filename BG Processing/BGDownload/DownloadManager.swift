@@ -23,8 +23,26 @@ class DownloadManager: NSObject
     private override init()
     {
         super.init()
+        
         let backgroundConfiguration = URLSessionConfiguration.background(withIdentifier: "com.pratik.backgroundDownloads")
-        self.session = URLSession(configuration: backgroundConfiguration, delegate: self, delegateQueue: nil)
+        
+        /* This makes sure you get an event on your app session launch
+            (in AppDelegate). Your app might be killed by system even if
+            your upload/download is going on. */
+        backgroundConfiguration.sessionSendsLaunchEvents = true
+        
+        /* This controles whether you are allowed to continue your
+            upload/download over cellular access. */
+        backgroundConfiguration.allowsCellularAccess = true
+        
+        /* This tells the system to wait for connectivity and then
+            resume uploading/downloading. If the network goes away,
+            it will restart from 0. */
+        backgroundConfiguration.waitsForConnectivity = true
+        
+        self.session = URLSession(configuration: backgroundConfiguration,
+                                  delegate: self,
+                                  delegateQueue: nil)
     }
     
     // MARK: - Download file
@@ -76,12 +94,16 @@ class DownloadManager: NSObject
     
     // MARK: - File utility
     
-    private func moveFile(fromUrl url:URL, toDirectory directory:String?, withName name:String) -> (success: Bool, error: Error?, url: URL?)
+    private func moveFile(fromUrl url:URL,
+                          toDirectory directory:String?,
+                          withName name:String) -> (success: Bool, error: Error?, url: URL?)
     {
         var newUrl:URL
         if let directory = directory {
             let directoryCreationResult = self.createDirectoryIfNotExists(withName: directory)
-            guard directoryCreationResult.success == true else { return (false, directoryCreationResult.error, nil) }
+            guard directoryCreationResult.success == true else {
+                return (false, directoryCreationResult.error, nil)
+            }
             newUrl = Helper.cacheDirectoryPath().appendingPathComponent(directory).appendingPathComponent(name)
         } else {
             newUrl = Helper.cacheDirectoryPath().appendingPathComponent(name)
@@ -115,7 +137,7 @@ class DownloadManager: NSObject
         let content = UNMutableNotificationContent()
         content.title = "Downloads have been completed!"
         content.body = "Click here to open"
-        content.sound =  UNNotificationSound(named: UNNotificationSoundName(rawValue: "male_voice.aiff"))
+        content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "male_voice.aiff"))
         
         let request = UNNotificationRequest(identifier: "AllDownloadCompletedNotification", content: content, trigger: nil)
         let center = UNUserNotificationCenter.current()
@@ -129,7 +151,9 @@ class DownloadManager: NSObject
 
 extension DownloadManager : URLSessionDelegate, URLSessionDownloadDelegate 
 {
-    public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL)
+    public func urlSession(_ session: URLSession,
+                           downloadTask: URLSessionDownloadTask,
+                           didFinishDownloadingTo location: URL)
     {
         let key = (downloadTask.originalRequest?.url?.absoluteString)!
         guard let download = self.ongoingDownloads[key], let response = downloadTask.response else { return }
@@ -182,7 +206,9 @@ extension DownloadManager : URLSessionDelegate, URLSessionDownloadDelegate
         })
     }
     
-    public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?)
+    public func urlSession(_ session: URLSession,
+                           task: URLSessionTask,
+                           didCompleteWithError error: Error?)
     {
         if let error = error {
             let downloadTask = task as! URLSessionDownloadTask

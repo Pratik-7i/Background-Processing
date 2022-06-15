@@ -29,7 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate
            task – and a unique identifier. Register all of the tasks
            before the end of the app launch */
         
+        // Background Fetch
         BGFetchManager.shared.registerAppRefreshTask()
+        
+        // Background Processing
         BGProcessingManager.shared.registerBackgroundProcessingTask()
         
         /*-------------------
@@ -66,6 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         // When the app goes into the background, we need to schedule the background task
         
         logger.info("App did enter background")
+        // Check the placement and purpose
         BGTaskScheduler.shared.cancelAllTaskRequests()
         
         BGFetchManager.shared.scheduleAppRefresh()

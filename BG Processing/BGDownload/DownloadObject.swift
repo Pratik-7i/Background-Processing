@@ -9,10 +9,10 @@ import UIKit
 
 class DownloadObject: NSObject 
 {
-    let title           : String
-    let fileURL         : String
-    let fileName        : String?
-    let directoryName   : String?
+    var title           : String?
+    var fileURL         : String
+    var fileName        : String?
+    var directoryName   : String?
     var index           : Int = 0
     var isDownloading   : Bool = false
     var progress        : Double = 0
@@ -20,7 +20,7 @@ class DownloadObject: NSObject
     var progressBlock   : DownloadProgressBlock?
     var completionBlock : DownloadCompletionBlock?
     
-    init(title: String, fileURL: String, fileName: String?, directoryName: String?, index: Int = 0)
+    init(title: String? = nil, fileURL: String, fileName: String? = nil, directoryName: String? = nil, index: Int = 0)
     {
         self.title          = title
         self.fileURL        = fileURL

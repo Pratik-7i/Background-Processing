@@ -9,17 +9,17 @@ import UIKit
 
 class BGFetchVC: UIViewController
 {
-    @IBOutlet weak var lastUpdatedLabel   : UILabel!
-    @IBOutlet weak var weatherInfoView    : UIView!
-    @IBOutlet weak var regionLabel        : UILabel!
-    @IBOutlet weak var iconImageView      : UIImageView!
-    @IBOutlet weak var tempLabel          : UILabel!
-    @IBOutlet weak var conditionLabel     : UILabel!
-    @IBOutlet weak var windSpeedLabel     : UILabel!
-    @IBOutlet weak var humidityLabel      : UILabel!
-    @IBOutlet weak var rainChanceLabel    : UILabel!
-    @IBOutlet weak var forecastTableView  : UITableView!
-    @IBOutlet weak var noDataView         : UIView!
+    @IBOutlet weak var lastUpdatedLabel  : UILabel!
+    @IBOutlet weak var weatherInfoView   : UIView!
+    @IBOutlet weak var regionLabel       : UILabel!
+    @IBOutlet weak var iconImageView     : UIImageView!
+    @IBOutlet weak var tempLabel         : UILabel!
+    @IBOutlet weak var conditionLabel    : UILabel!
+    @IBOutlet weak var windSpeedLabel    : UILabel!
+    @IBOutlet weak var humidityLabel     : UILabel!
+    @IBOutlet weak var rainChanceLabel   : UILabel!
+    @IBOutlet weak var forecastTableView : UITableView!
+    @IBOutlet weak var noDataView        : UIView!
 
     var weatherModel : WeatherModel? = nil
 

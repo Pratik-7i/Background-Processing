@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol DayNightModeSwitcherDelegate: class {
+protocol DayNightModeSwitcherDelegate: AnyObject {
     func switcher(_ switcher: DayNightModeSwitcher, didChangeValueTo value: TypeOfSwitcher)
 }
 

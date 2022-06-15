@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Photos
 
 class BGProcessingVC: UIViewController
 {
@@ -17,11 +18,26 @@ class BGProcessingVC: UIViewController
     {
         super.viewDidLoad()
         self.setupControls()
+        self.askForPermission()
         self.fetchData()
     }
     
     func setupControls() {
         self.title = "Photos"
+    }
+    
+    func askForPermission()
+    {
+        let permission = PHPhotoLibrary.authorizationStatus()
+        if permission == .notDetermined {
+            PHPhotoLibrary.requestAuthorization({status in
+                if status == .authorized {
+                    print("Usr granted permission for Photo Library.")
+                } else {
+                    print("Photo library permission denied")
+                }
+            })
+        }
     }
     
     func fetchData()

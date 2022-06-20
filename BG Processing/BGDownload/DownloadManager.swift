@@ -78,7 +78,7 @@ class DownloadManager: NSObject
         return downloadStatus.isInProcess
     }
     
-    public func alterBlocksForOngoingDownload(withUniqueKey key:String?,
+    public func assignBlocksForOngoingDownload(withUniqueKey key:String?,
                                               setProgress progressBlock:DownloadProgressBlock?,
                                               setCompletion completionBlock:@escaping DownloadCompletionBlock)
     {

@@ -408,7 +408,7 @@ You create download tasks from the session with either the `downloadTask(with:)`
 
 ```swift
 let downloadTask = session.downloadTask(with: url)
-backgroundTask.resume()
+downloadTask.resume()
 ```
 
 ### # Handling Downloads on the Background
